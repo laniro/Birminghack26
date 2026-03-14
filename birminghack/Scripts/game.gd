@@ -1,5 +1,11 @@
 extends Node2D
 
+@export var enemy_distance = 100
+@export var enemy_speed = 100
+var enemy_scene: PackedScene = load("res://Scenes/enemies.tscn")
+var wave_count = 1
+var player
+
 enum PopupID{
 	AMaxHealth,
 	ADefense,
@@ -19,6 +25,7 @@ func _ready() -> void:
 	_pmM.add_item("+10% Max Heath",PopupID.MDefense)
 	_pmA.add_item("+5 Speed",PopupID.ASpeed)
 	_pmM.add_item("+1% Speed",PopupID.MSpeed)
+	player = get_node("/root/Game/Player")
 
 func openPopupBasic():
 	_pmA.popup()
@@ -29,10 +36,35 @@ func id_pressed(i):
 	if i == PopupID.AMaxHealth:
 		$Player.upgrade("Heal",true,1)
 	elif i== PopupID.ADefense:
-		%Player.upgrade("Def",true,5)
+		$Player.upgrade("Def",true,5)
 	elif i== PopupID.MDefense:
-		%Player.upgrade("Def",false,0.1)
+		$Player.upgrade("Def",false,0.1)
 	elif i== PopupID.ASpeed:
-		%Player.upgrade("Speed",true,5)
+		$Player.upgrade("Speed",true,5)
 	elif i== PopupID.MSpeed:
-		%Player.upgrade("Speed",false,0.01)
+		$Player.upgrade("Speed",false,0.01)
+
+func _on_timer_timeout() -> void:
+	for n in range(log(wave_count)/log(2)):
+		var enemy = enemy_scene.instantiate()
+		var rng := RandomNumberGenerator.new()
+		var rand_degs: int = rng.randi_range(0,360)
+	
+		var screen = Vector2(
+			get_viewport().get_visible_rect().size[0],
+			get_viewport().get_visible_rect().size[1]
+		)
+	
+		var x: float = player.position.x + enemy_distance*cos(rand_degs*0.0174532)
+		var y: float = player.position.y + enemy_distance*sin(rand_degs*0.0174532)
+	
+		enemy.position = Vector2(x,y)
+		enemy.enemyspeed = enemy_speed
+		enemy.player = player
+		$Enemies.add_child(enemy)
+		enemy.connect("collision", on_enemy_collision)
+	wave_count += 1
+
+func on_enemy_collision(dmg, isTrue):
+	print("Enemy collided")
+	$Player.Hit(dmg, isTrue)
