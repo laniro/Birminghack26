@@ -28,4 +28,8 @@ func _on_timer_timeout() -> void:
 		enemy.position = Vector2(x,y)
 		enemy.enemyspeed = enemy_speed
 		$Enemies.add_child(enemy)
+		enemy.connect("collision", on_enemy_collision)
 	wave_count += 1
+
+func on_enemy_collision():
+	print("Enemy collided")

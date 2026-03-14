@@ -5,6 +5,8 @@ var player
 var enemyspeed
 var parent
 
+signal collision
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("/root/Game/Player")
@@ -21,3 +23,8 @@ func _process(delta: float) -> void:
 	
 	var velocity = vector_to_player * delta * enemyspeed
 	position += velocity
+
+
+func _on_body_entered(body: Node2D) -> void:
+	print("Body Entered")
+	collision.emit()

@@ -46,7 +46,8 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	Hit(1, false)
+	print("Player Hit")
+	hit.emit()
 
 func onKill():
 	time += 5
@@ -70,6 +71,7 @@ func Hit(damage, isTrue):
 	
 	if (randf()>overallDefense):
 		health -= damage
+	print(health)
 	
 func heal(amount):
 	health = min(maxhalth,health+amount)
@@ -98,3 +100,7 @@ func summonOrb() -> void:
 	var orb = orb_scene.instantiate()
 	get_tree().current_scene.add_child(orb)
 	orb.initiate(self)
+
+
+func _on_hit() -> void:
+	Hit(1, false)
