@@ -6,6 +6,7 @@ extends Area2D
 @export var health = 1
 @export var defense = 0.1
 @export var trueDefense = 0
+var velocity = Vector2(0, 0)
 #var screensize
 
 signal hit
@@ -22,7 +23,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	# Gets speed
-	var velocity = Vector2(0, 0)
 	if Input.is_action_pressed("moveUp"):
 		velocity.y = -1
 		velocity.y = -1
