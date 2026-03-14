@@ -17,7 +17,6 @@ sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
 [node name="Game" type="Node2D" unique_id=388217617]
 script = ExtResource("1_3dryh")
-enemy_distance = 1500
 
 [node name="Player" parent="." unique_id=409008626 instance=ExtResource("1_ebmjs")]
 
@@ -40,12 +39,14 @@ z_index = -1
 tile_set = SubResource("TileSet_1l0tm")
 script = ExtResource("4_3dryh")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1600962164]
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=502556556]
 z_index = -1
 tile_set = SubResource("TileSet_1l0tm")
 script = ExtResource("4_3dryh")
 
 [node name="Bullets" type="Node" parent="." unique_id=1223986288]
+
+[node name="XP" type="Node" parent="." unique_id=1518550699]
 
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
