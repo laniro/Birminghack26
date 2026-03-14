@@ -1,11 +1,21 @@
 [gd_scene format=3 uid="uid://410lc6q65l3q"]
 
 [ext_resource type="PackedScene" uid="uid://c40826trlpkd" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="Script" uid="uid://b7nf8aqw1fadi" path="res://Scripts/game.gd" id="1_wrm1d"]
-[ext_resource type="PackedScene" uid="uid://cksl7q70sx1sn" path="res://Scenes/enemy_manager.tscn" id="3_wrm1d"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy_manager.tscn" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://c0deahf45c4jt" path="res://Scenes/tile_map_layer.gd" id="4_3dryh"]
+[ext_resource type="Texture2D" uid="uid://b6pn778e77t3q" path="res://Graphics/Tiles.png" id="4_wowpa"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
+texture = ExtResource("4_wowpa")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1l0tm"]
+sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
 [node name="Game" type="Node2D" unique_id=388217617]
-script = ExtResource("1_wrm1d")
 
 [node name="Player" parent="." unique_id=409008626 instance=ExtResource("1_ebmjs")]
 
@@ -18,3 +28,8 @@ position_smoothing_enabled = true
 [node name="PopupMenu2" type="PopupMenu" parent="." unique_id=688377991]
 
 [node name="EnemyManager" parent="." unique_id=1584300409 instance=ExtResource("3_wrm1d")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1600962164]
+z_index = -1
+tile_set = SubResource("TileSet_1l0tm")
+script = ExtResource("4_3dryh")
