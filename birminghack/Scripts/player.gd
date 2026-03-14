@@ -12,6 +12,9 @@ var velocity = Vector2(0, 0)
 var canSwing = true
 #var screensize
 
+var idle = load("res://Graphics/marcus_happy.png")
+var hurt = load("res://Graphics/marcus_angry.png")
+
 signal hit
 signal shoot(pos)
 signal swing(pos)
@@ -125,8 +128,21 @@ func summonOrb() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	hit.emit()
+	if area.collision_layer == 2 && $HitTimer.is_stopped():
+		hit.emit()
+
+func _on_hit() -> void:
+	Hit(1,false)
 
 
 func _on_sword_cool_down_timeout() -> void:
 	canSwing = true
+
+func _marcus() -> void:
+	$Sprite2D.texture = hurt
+	$HitTimer.start(0.5)
+
+
+func _on_hit_timer_timeout() -> void:
+	$Sprite2D.texture = idle
+	$HitTimer.stop()
