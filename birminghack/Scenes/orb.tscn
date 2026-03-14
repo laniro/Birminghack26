@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://deuvxp82bcy4i"]
 
 [ext_resource type="Texture2D" uid="uid://b4nxr0mvpcfnh" path="res://enemies.png" id="1_caui3"]
-[ext_resource type="Script" uid="uid://ckfj74st4qmea" path="res://Scenes/orb.gd" id="1_ryljl"]
+[ext_resource type="Script" uid="uid://koi348gji1by" path="res://Scenes/orb.gd" id="1_ryljl"]
 
 [node name="Orb" type="Node2D" unique_id=1409339171]
 script = ExtResource("1_ryljl")

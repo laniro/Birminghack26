@@ -89,4 +89,4 @@ func upgrade(type, isArithmetic, amount):
 func summonOrb() -> void:
 	var orb = orb_scene.instantiate()
 	get_tree().current_scene.add_child(orb)
-	orb.init(self)
+	orb.initiate(self)
