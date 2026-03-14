@@ -18,22 +18,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var vector_to_player = player.position - position
 	
-	if vector_to_player.length() < 50: 
-		collision.emit(1, false)
-		summonXP()
-		queue_free()
-	
 	vector_to_player = vector_to_player.normalized()
 	
 	var velocity = vector_to_player * delta * enemyspeed
 	position += velocity
 
-
-func _on_body_entered(body: Node2D) -> void:
-	print("Body Entered")
-	collision.emit()
-
 func summonXP() -> void:
 	var xp = xp_scene.instantiate()
 	get_tree().current_scene.add_child(xp)
 	xp.initiate(self)
+
+func kill():
+	summonXP()
+	queue_free()
+
+
+
+
+func _on_area_entered(area: Area2D) -> void:
+	collision.emit()
+	queue_free()

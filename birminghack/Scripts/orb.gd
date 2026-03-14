@@ -14,7 +14,7 @@ preload("res://Graphics/Orb2.png"),
 preload("res://Graphics/Orb3.png"),
 preload("res://Graphics/Orb4.png"),
 preload("res://Graphics/Orb5.png"),
-preload("res://Graphics/Orb6.png"),]
+preload("res://Graphics/Orb6.png")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

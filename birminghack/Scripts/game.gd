@@ -1,8 +1,9 @@
 extends Node2D
 
-@export var enemy_distance = 100
-@export var enemy_speed = 100
+@export var enemy_distance = 1500
+@export var enemy_speed = 300
 var enemy_scene: PackedScene = load("res://Scenes/enemies.tscn")
+var bullet_scene: PackedScene = load("res://Scenes/Bullet.tscn")
 var wave_count = 1
 var player
 
@@ -68,3 +69,9 @@ func _on_timer_timeout() -> void:
 func on_enemy_collision(dmg, isTrue):
 	print("Enemy collided")
 	$Player.Hit(dmg, isTrue)
+
+
+func _on_player_shoot(pos: Variant) -> void:
+	var bullet = bullet_scene.instantiate()
+	bullet.position = pos
+	$Bullets.add_child(bullet)

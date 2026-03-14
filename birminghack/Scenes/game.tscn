@@ -21,4 +21,7 @@ autostart = true
 
 [node name="Enemies" type="Node" parent="." unique_id=183761389]
 
+[node name="Bullets" type="Node" parent="." unique_id=1223986288]
+
+[connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

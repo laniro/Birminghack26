@@ -12,6 +12,7 @@ var velocity = Vector2(0, 0)
 #var screensize
 
 signal hit
+signal shoot(pos)
 
 var orb_scene: PackedScene = load("res://Scenes/orb.tscn")
 
@@ -43,6 +44,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("summon"):
 		summonOrb()
+	
+	if Input.is_action_just_pressed("attack"):
+		shoot.emit($BulletStart.global_position)
 
 
 func _on_body_entered(body: Node2D) -> void:
