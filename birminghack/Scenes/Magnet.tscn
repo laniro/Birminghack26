@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://by5hb87outdf3"]
+[gd_scene format=3 uid="uid://df418o1ovncfg"]
 
-[ext_resource type="Script" uid="uid://cb0smir2svm1x" path="res://Scripts/magnet.gd" id="1_p8y1d"]
+[ext_resource type="Script" path="res://Scripts/magnet.gd" id="1_p8y1d"]
 [ext_resource type="Texture2D" uid="uid://i4f5g82at5h6" path="res://Graphics/Experience orb/frame_0001.png" id="2_kd31t"]
 [ext_resource type="Texture2D" uid="uid://bjrjxmq0680fg" path="res://Graphics/Experience orb/frame_0002.png" id="3_vuq4f"]
 [ext_resource type="Texture2D" uid="uid://f87m6g5lhbkw" path="res://Graphics/Experience orb/frame_0003.png" id="4_5lvn6"]
@@ -95,6 +95,7 @@ radius = 8.0
 
 [node name="Magnet" type="Area2D" unique_id=1474659147]
 scale = Vector2(4, 4)
+collision_layer = 8
 script = ExtResource("1_p8y1d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1628973560]
