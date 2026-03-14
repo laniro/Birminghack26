@@ -2,6 +2,10 @@ extends Area2D
 
 @export var speed = 400
 @export var time = 100
+@export var maxhalth = 1
+@export var health = 1
+@export var defense = 0.1
+@export var trueDefense = 0
 var screensize
 
 signal hit
@@ -38,3 +42,32 @@ func _on_timer_timeout() -> void:
 	time -= 1
 	if time == 0:
 		pass # Where we will add shift code
+	
+
+func Hit(damage, isTrue):
+	var overallDefense = trueDefense
+	if (!isTrue):
+		overallDefense +=defense
+	
+	if (randf()>overallDefense):
+		health -= damage
+	
+func heal(amount):
+	health = min(maxhalth,health+amount)
+
+func upgrade(type, isArithmetic, amount):
+	if (type=="Def"):
+		if (isArithmetic):
+			defense += amount
+		else:
+			defense *= amount
+	if (type=="MaxHeal"):
+		if (isArithmetic):
+			maxhalth += amount
+		else:
+			maxhalth *= amount
+	if (type=="Speed"):
+		if (isArithmetic):
+			speed += amount
+		else:
+			speed *= amount

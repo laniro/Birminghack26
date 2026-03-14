@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://c40826trlpkd"]
+[gd_scene load_steps=4 format=3 uid="uid://c40826trlpkd"]
 
 [ext_resource type="Script" uid="uid://b0rlle2uu728w" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ckahu4rj45d62" path="res://icon.svg" id="1_v0iea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 
-[node name="Player" type="Area2D" unique_id=954365754]
+[node name="Player" type="Area2D"]
 script = ExtResource("1_cvnsp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1025225979]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_v0iea")
 
 [node name="HitBox" type="CollisionShape2D" parent="." unique_id=270889441]
