@@ -4,7 +4,7 @@ extends Area2D
 @export var time = 100
 @export var maxhalth = 1.0
 @export var health = 1.0
-@export var defense = 0.1
+@export var defense = 1
 @export var trueDefense = 0
 @export var exp = 0
 @export var level = 0
@@ -86,7 +86,7 @@ func Hit(damage, isTrue):
 	if (!isTrue):
 		overallDefense +=defense
 	
-	if (randf()>overallDefense):
+	if (randf()>=1/overallDefense):
 		health -= damage
 	updateHealthBar()
 	
