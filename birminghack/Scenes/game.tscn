@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7nf8aqw1fadi" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://c40826trlpkd" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="Script" uid="uid://c0deahf45c4jt" path="res://Scenes/tile_map_layer.gd" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://c0deahf45c4jt" path="res://Scripts/tile_map_layer.gd" id="4_3dryh"]
 [ext_resource type="Texture2D" uid="uid://b6pn778e77t3q" path="res://Graphics/Tiles.png" id="4_wowpa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
@@ -62,6 +62,7 @@ grow_horizontal = 2
 grow_vertical = 0
 value = 100.0
 show_percentage = false
+
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=502556556]
 z_index = -1
 tile_set = SubResource("TileSet_1l0tm")
@@ -71,7 +72,10 @@ script = ExtResource("4_3dryh")
 
 [node name="XP" type="Node" parent="." unique_id=1518550699]
 
+[node name="Weapons" type="Node" parent="." unique_id=1756171209]
+
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
+[connection signal="swing" from="Player" to="." method="_on_player_swing"]
 [connection signal="id_pressed" from="PopupMenu" to="." method="id_pressed"]
 [connection signal="id_pressed" from="PopupMenu2" to="." method="id_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

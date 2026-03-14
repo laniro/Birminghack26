@@ -79,6 +79,7 @@ func on_death():
 func _on_player_shoot(pos: Variant) -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.position = pos
+	print(bullet)
 	$Weapons.add_child(bullet)
 
 
