@@ -3,7 +3,9 @@ extends Node2D
 enum PopupID{
 	AMaxHealth,
 	ADefense,
-	MDefense
+	MDefense,
+	ASpeed,
+	MSpeed
 }
 
 var _last_mouse_position
@@ -15,6 +17,8 @@ func _ready() -> void:
 	_pmA.add_item("+1 Max Heath",PopupID.AMaxHealth)
 	_pmA.add_item("+5 Defense",PopupID.ADefense)
 	_pmM.add_item("+10% Max Heath",PopupID.MDefense)
+	_pmA.add_item("+5 Speed",PopupID.ASpeed)
+	_pmM.add_item("+1% Speed",PopupID.MSpeed)
 
 func openPopupBasic():
 	_pmA.popup()
@@ -28,3 +32,7 @@ func id_pressed(i):
 		%Player.upgrade("Def",true,5)
 	elif i== PopupID.MDefense:
 		%Player.upgrade("Def",false,0.1)
+	elif i== PopupID.ASpeed:
+		%Player.upgrade("Speed",true,5)
+	elif i== PopupID.MSpeed:
+		%Player.upgrade("Speed",false,0.01)

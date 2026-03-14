@@ -64,8 +64,11 @@ func upgrade(type, isArithmetic, amount):
 	if (type=="MaxHeal"):
 		if (isArithmetic):
 			maxhalth += amount
+			health+=amount
 		else:
 			maxhalth *= amount
+			health*= amount
+		
 	if (type=="Speed"):
 		if (isArithmetic):
 			speed += amount
