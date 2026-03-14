@@ -27,6 +27,12 @@ position_smoothing_enabled = true
 
 [node name="PopupMenu2" type="PopupMenu" parent="." unique_id=688377991]
 
+[node name="Timer" type="Timer" parent="." unique_id=536050365]
+autostart = true
+
+[node name="Enemies" type="Node" parent="." unique_id=183761389]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [node name="EnemyManager" parent="." unique_id=1584300409 instance=ExtResource("3_wrm1d")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1600962164]
