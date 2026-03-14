@@ -5,7 +5,7 @@ extends Area2D
 @export var maxhalth = 1
 @export var health = 1
 @export var defense = 0.1
-@export var trueDefense = 0
+@export var trueDefense = 0.01
 var screensize
 
 signal hit
