@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://ey7sr01reoc0"]
 
-[ext_resource type="Script" uid="uid://ckfj74st4qmea" path="res://Scenes/orb.gd" id="1_qv81b"]
-[ext_resource type="Texture2D" uid="uid://b4nxr0mvpcfnh" path="res://enemies.png" id="2_e1ly8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17xbw"]
 
-[node name="Orb" type="Node2D" unique_id=1409339171]
-script = ExtResource("1_qv81b")
+[node name="Weapon" type="Area2D" unique_id=699761676]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961877531]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_e1ly8")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216011397]
+shape = SubResource("RectangleShape2D_17xbw")
