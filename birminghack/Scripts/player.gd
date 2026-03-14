@@ -2,8 +2,8 @@ extends Area2D
 
 @export var speed = 400
 @export var time = 100
-@export var maxhalth = 1
-@export var health = 1
+@export var maxhalth = 1.0
+@export var health = 1.0
 @export var defense = 0.1
 @export var trueDefense = 0
 @export var exp = 0
@@ -70,7 +70,15 @@ func gainExp(amount):
 			$"..".openPopupBasic()
 		else:
 			$"..".openPopupBonus()
-	
+	updateExperienceBar()
+	updateHealthBar()
+
+func updateExperienceBar():
+	$"../CanvasLayer/ExperienceBar".value = 100*exp/(10*(level+1))
+
+func updateHealthBar():
+	$"../CanvasLayer/HealthBar".value = 100*health/maxhalth
+	print(health)
 
 func Hit(damage, isTrue):
 	var overallDefense = trueDefense
@@ -79,10 +87,11 @@ func Hit(damage, isTrue):
 	
 	if (randf()>overallDefense):
 		health -= damage
-	print(health)
+	updateHealthBar()
 	
 func heal(amount):
 	health = min(maxhalth,health+amount)
+	updateHealthBar()
 
 func upgrade(type, isArithmetic, amount):
 	if (type=="Def"):
@@ -97,6 +106,7 @@ func upgrade(type, isArithmetic, amount):
 		else:
 			maxhalth *= amount
 			health*= amount
+		updateHealthBar()
 		
 	if (type=="Speed"):
 		if (isArithmetic):
