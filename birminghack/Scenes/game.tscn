@@ -8,6 +8,10 @@ script = ExtResource("1_qxrlw")
 
 [node name="Player" parent="." unique_id=409008626 instance=ExtResource("1_ebmjs")]
 
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1648720604]
+limit_enabled = false
+position_smoothing_enabled = true
+
 [node name="PopupMenu" type="PopupMenu" parent="." unique_id=464105625]
 
 [node name="PopupMenu2" type="PopupMenu" parent="." unique_id=688377991]
