@@ -6,29 +6,37 @@ extends Area2D
 @export var health = 1
 @export var defense = 0.1
 @export var trueDefense = 0
-var screensize
+#var screensize
 
 signal hit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	screensize = get_viewport_rect().size
+	#screensize = get_viewport_rect().size
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	# Gets speed
 	var velocity = Vector2(0, 0)
 	if Input.is_action_pressed("moveUp"):
-		velocity.y = 1
-	elif Input.is_action_pressed("moveDown"):
 		velocity.y = -1
+	elif Input.is_action_pressed("moveDown"):
+		velocity.y = 1
 	if Input.is_action_pressed("moveRight"):
 		velocity.x = 1
 	elif Input.is_action_pressed("moveLeft"):
 		velocity.x = -1
 	velocity = velocity.normalized() * speed
 	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screensize)
+	#position = position.clamp(Vector2.ZERO, screensize)
+	
+	# Gets Rotation
+	look_at(get_global_mouse_position())
+	rotate(PI/2)
+	
 
 
 

@@ -5,3 +5,7 @@
 [node name="Game" type="Node2D" unique_id=1042242567]
 
 [node name="Player" parent="." unique_id=954365754 instance=ExtResource("1_ebmjs")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=41661085]
+ignore_rotation = false
+position_smoothing_enabled = true
