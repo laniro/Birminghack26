@@ -33,8 +33,6 @@ func kill():
 	queue_free()
 
 
-
-
 func _on_area_entered(area: Area2D) -> void:
 	collision.emit()
 	queue_free()
