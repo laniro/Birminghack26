@@ -6,6 +6,8 @@ extends Area2D
 @export var health = 1
 @export var defense = 0.1
 @export var trueDefense = 0
+@export var exp = 0
+@export var level = 0
 var velocity = Vector2(0, 0)
 #var screensize
 
@@ -54,6 +56,12 @@ func _on_timer_timeout() -> void:
 	if time == 0:
 		pass # Where we will add shift code
 	
+func gainExp(amount):
+	exp += amount
+	if (exp>10*(level+1)):
+		exp-=10*(level+1)
+		level+=1
+	
 
 func Hit(damage, isTrue):
 	var overallDefense = trueDefense
@@ -89,4 +97,4 @@ func upgrade(type, isArithmetic, amount):
 func summonOrb() -> void:
 	var orb = orb_scene.instantiate()
 	get_tree().current_scene.add_child(orb)
-	orb.init(self)
+	orb.initiate(self)
