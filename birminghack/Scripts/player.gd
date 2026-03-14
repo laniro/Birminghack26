@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("summon"):
 		summonOrb()
 	
-	if Input.is_action_pressed("attack"):
+	if Input.is_action_just_pressed("attack"):
 		shoot.emit($BulletStart.global_position)
 
 
