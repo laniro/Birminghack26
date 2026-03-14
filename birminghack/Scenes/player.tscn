@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c40826trlpkd"]
 
 [ext_resource type="Script" uid="uid://b0rlle2uu728w" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://ckahu4rj45d62" path="res://icon.svg" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://corkpt4ajuexg" path="res://Graphics/marcus_happy.png" id="2_cvnsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 
@@ -9,9 +9,13 @@
 visibility_layer = 2
 collision_mask = 10
 script = ExtResource("1_cvnsp")
+maxhalth = 20.0
+health = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117317918]
-texture = ExtResource("1_v0iea")
+position = Vector2(0, 35.999996)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_cvnsp")
 
 [node name="HitBox" type="CollisionShape2D" parent="." unique_id=270889441]
 scale = Vector2(6.2, 6.2)
@@ -26,8 +30,11 @@ position = Vector2(0, -72)
 [node name="SwordCoolDown" type="Timer" parent="." unique_id=1182788630]
 wait_time = 0.7
 
+[node name="HitTimer" type="Timer" parent="." unique_id=1508705901]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="SwordCoolDown" to="." method="_on_sword_cool_down_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
