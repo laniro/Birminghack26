@@ -14,12 +14,12 @@ func _ready() -> void:
 	position = Vector2(0,0)
 	rotation_degrees = randf_range(0.0, 360.0)
 	rotationVelocity = randfn(0.0, 0.01)
-	target = Vector2(randi_range(0, 1000),randi_range(0, 1000))
+	target = get_global_mouse_position()
 
-func init(parent):
+func initiate(p):
+	parent = p
 	position = parent.position
 	velocity = parent.velocity
-	self.parent = parent
 	velocity += Vector2.from_angle(deg_to_rad(randf_range(0,360)))*200
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 		if position.distance_to(parent.position) < 50:
 			queue_free()
 	else:
-		if position.distance_to(target) < 50:
+		if (position.distance_to(target) < 200 && position.distance_to(parent.position) > 100):
 			reachedTarget = true
 	if ttl <=0:
 		queue_free()
