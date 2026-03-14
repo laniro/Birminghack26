@@ -21,6 +21,7 @@ var _last_mouse_position
 @onready var _pmM = $PopupMenu2
 
 func _ready() -> void:
+	_pmA.add_theme_font_size_override("font_size",700)
 	_pmA.add_item("+1 Max Heath",PopupID.AMaxHealth)
 	_pmA.add_item("+5 Defense",PopupID.ADefense)
 	_pmM.add_item("+10% Max Heath",PopupID.MDefense)
@@ -29,10 +30,14 @@ func _ready() -> void:
 	player = get_node("/root/Game/Player")
 
 func openPopupBasic():
-	_pmA.popup()
-	#_pm.popup(Rect2(_last_mouse_position.x,_last_mouse_position.y))
+	get_tree().paused = true
+	_pmA.popup(Rect2(0,0,get_viewport().get_visible_rect().size[0],get_viewport().get_visible_rect().size[1]))
+	
 func openPopupBonus():
-	_pmM.popup()
+	get_tree().paused = true
+	_pmM.popup(Rect2(0,0,get_viewport().get_visible_rect().size[0],get_viewport().get_visible_rect().size[1]))
+	
+	
 func id_pressed(i):
 	if i == PopupID.AMaxHealth:
 		$Player.upgrade("Heal",true,1)
@@ -44,6 +49,7 @@ func id_pressed(i):
 		$Player.upgrade("Speed",true,5)
 	elif i== PopupID.MSpeed:
 		$Player.upgrade("Speed",false,0.01)
+	get_tree().paused = false
 
 func _on_timer_timeout() -> void:
 	for n in range(log(wave_count)/log(2)):

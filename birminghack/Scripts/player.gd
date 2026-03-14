@@ -66,6 +66,10 @@ func gainExp(amount):
 	if (exp>10*(level+1)):
 		exp-=10*(level+1)
 		level+=1
+		if level%5:
+			$"..".openPopupBasic()
+		else:
+			$"..".openPopupBonus()
 	
 
 func Hit(damage, isTrue):

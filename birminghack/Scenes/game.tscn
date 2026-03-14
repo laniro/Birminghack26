@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7nf8aqw1fadi" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://c40826trlpkd" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="Script" path="res://Scenes/tile_map_layer.gd" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://c0deahf45c4jt" path="res://Scenes/tile_map_layer.gd" id="4_3dryh"]
 [ext_resource type="Texture2D" uid="uid://b6pn778e77t3q" path="res://Graphics/Tiles.png" id="4_wowpa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
@@ -17,7 +17,6 @@ sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
 [node name="Game" type="Node2D" unique_id=388217617]
 script = ExtResource("1_3dryh")
-enemy_distance = 1500
 
 [node name="Player" parent="." unique_id=409008626 instance=ExtResource("1_ebmjs")]
 
@@ -27,8 +26,12 @@ limit_enabled = false
 position_smoothing_enabled = true
 
 [node name="PopupMenu" type="PopupMenu" parent="." unique_id=464105625]
+shrink_height = false
+shrink_width = false
 
 [node name="PopupMenu2" type="PopupMenu" parent="." unique_id=688377991]
+shrink_height = false
+shrink_width = false
 
 [node name="Timer" type="Timer" parent="." unique_id=536050365]
 autostart = true
@@ -40,7 +43,7 @@ z_index = -1
 tile_set = SubResource("TileSet_1l0tm")
 script = ExtResource("4_3dryh")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1600962164]
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=576656806]
 z_index = -1
 tile_set = SubResource("TileSet_1l0tm")
 script = ExtResource("4_3dryh")
@@ -48,4 +51,6 @@ script = ExtResource("4_3dryh")
 [node name="Bullets" type="Node" parent="." unique_id=1223986288]
 
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="id_pressed"]
+[connection signal="id_pressed" from="PopupMenu2" to="." method="id_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
