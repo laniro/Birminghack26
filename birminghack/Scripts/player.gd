@@ -12,9 +12,6 @@ var velocity = Vector2(0, 0)
 var canSwing = true
 #var screensize
 
-var idle = load("res://Graphics/marcus_happy.png")
-var hurt = load("res://Graphics/marcus_angry.png")
-
 signal hit
 signal shoot(pos)
 signal swing(pos)
@@ -89,7 +86,7 @@ func Hit(damage, isTrue):
 	if (!isTrue):
 		overallDefense +=defense
 	
-	if (randf()>=1/overallDefense):
+	if (randf()<=1/overallDefense):
 		health -= damage
 	updateHealthBar()
 	
@@ -132,6 +129,7 @@ func _on_area_entered(area: Area2D) -> void:
 		hit.emit()
 
 func _on_hit() -> void:
+	_marcus()
 	Hit(1,false)
 
 
@@ -139,10 +137,11 @@ func _on_sword_cool_down_timeout() -> void:
 	canSwing = true
 
 func _marcus() -> void:
+	var hurt = load("res://Graphics/marcus_angry.png")
 	$Sprite2D.texture = hurt
 	$HitTimer.start(0.5)
 
-
 func _on_hit_timer_timeout() -> void:
+	var idle = load("res://Graphics/marcus_happy.png")
 	$Sprite2D.texture = idle
 	$HitTimer.stop()
