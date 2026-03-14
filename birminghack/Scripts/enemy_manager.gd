@@ -3,9 +3,10 @@ extends Node2D
 
 @export var enemy_distance = 50
 @export var enemy_speed = 50
+var player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	player = get_node("/root/Game/Player")
 
 
 var enemy_scene: PackedScene = load("res://Scenes/enemies.tscn")
@@ -22,10 +23,11 @@ func _on_timer_timeout() -> void:
 			get_viewport().get_visible_rect().size[1]
 		)
 	
-		var x: float = screen.x/2 + enemy_distance*cos(rand_degs*0.0174532)
-		var y: float = screen.y/2 + enemy_distance*sin(rand_degs*0.0174532)
+		var x: float = player.position.x + enemy_distance*cos(rand_degs*0.0174532)
+		var y: float = player.position.y + enemy_distance*sin(rand_degs*0.0174532)
 	
 		enemy.position = Vector2(x,y)
 		enemy.enemyspeed = enemy_speed
+		enemy.player = player
 		$Enemies.add_child(enemy)
 	wave_count += 1
