@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ey7sr01reoc0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17xbw"]
+
+[node name="Weapon" type="Area2D" unique_id=699761676]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216011397]
+shape = SubResource("RectangleShape2D_17xbw")
