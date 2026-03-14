@@ -95,11 +95,14 @@ func heal(amount):
 	updateHealthBar()
 
 func upgrade(type, isArithmetic, amount):
+	if !isArithmetic:
+		amount += 1
+	
 	if (type=="Def"):
 		if (isArithmetic):
 			defense += amount
 		else:
-			defense *= (1+amount)
+			defense *= amount
 	if (type=="MaxHeal"):
 		if (isArithmetic):
 			maxhalth += amount
