@@ -11,6 +11,6 @@ func initiate(parent):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var player = get_node("/root/Game/Player")
-	if position.distance_to(player.position) < 50:
+	if position.distance_to(player.position) < 100:
 		player.gainExp(value)
 		queue_free()

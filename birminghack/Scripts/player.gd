@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("summon"):
 		summonOrb()
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_pressed("attack"):
 		shoot.emit($BulletStart.global_position)
 
 
@@ -66,6 +66,11 @@ func gainExp(amount):
 	if (exp>10*(level+1)):
 		exp-=10*(level+1)
 		level+=1
+		if level%5:
+			$"..".openPopupBasic()
+		else:
+			$"..".openPopupBonus()
+	$"../CanvasLayer/ProgressBar".value = 100*exp/(10*(level+1))
 	
 
 func Hit(damage, isTrue):
