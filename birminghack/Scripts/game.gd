@@ -81,7 +81,6 @@ func _on_player_shoot(pos: Variant) -> void:
 	bullet.position = pos
 	$Weapons.add_child(bullet)
 
-
 func _on_player_swing(pos: Variant) -> void:
 	var sword = sword_scene.instantiate()
 	sword.position = pos

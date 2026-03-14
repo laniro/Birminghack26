@@ -4,7 +4,7 @@ extends Area2D
 @export var time = 100
 @export var maxhalth = 1.0
 @export var health = 1.0
-@export var defense = 0.1
+@export var defense = 1
 @export var trueDefense = 0
 @export var exp = 0
 @export var level = 0
@@ -12,6 +12,9 @@ var velocity = Vector2(0, 0)
 var canSwing = true
 var maxScore = 0
 #var screensize
+
+var idle = load("res://Graphics/marcus_happy.png")
+var hurt = load("res://Graphics/marcus_angry.png")
 
 signal hit
 signal shoot(pos)
@@ -89,7 +92,7 @@ func Hit(damage, isTrue):
 	if (!isTrue):
 		overallDefense +=defense
 	
-	if (randf()>overallDefense):
+	if (randf()>=1/overallDefense):
 		health -= damage
 	updateHealthBar()
 	print(health)
@@ -101,11 +104,14 @@ func heal(amount):
 	updateHealthBar()
 
 func upgrade(type, isArithmetic, amount):
+	if !isArithmetic:
+		amount += 1
+	
 	if (type=="Def"):
 		if (isArithmetic):
 			defense += amount
 		else:
-			defense *= (1+amount)
+			defense *= amount
 	if (type=="MaxHeal"):
 		if (isArithmetic):
 			maxhalth += amount
@@ -128,8 +134,21 @@ func summonOrb() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	hit.emit()
+	if area.collision_layer == 2 && $HitTimer.is_stopped():
+		hit.emit()
+
+func _on_hit() -> void:
+	Hit(1,false)
 
 
 func _on_sword_cool_down_timeout() -> void:
 	canSwing = true
+
+func _marcus() -> void:
+	$Sprite2D.texture = hurt
+	$HitTimer.start(0.5)
+
+
+func _on_hit_timer_timeout() -> void:
+	$Sprite2D.texture = idle
+	$HitTimer.stop()
