@@ -1,21 +1,11 @@
 [gd_scene format=3 uid="uid://c40826trlpkd"]
 
-[ext_resource type="Script" uid="uid://b0rlle2uu728w" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://ckahu4rj45d62" path="res://icon.svg" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://ckfj74st4qmea" path="res://Scenes/orb.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://b4nxr0mvpcfnh" path="res://enemies.png" id="2_6t5aa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-
-[node name="Player" type="Area2D" unique_id=1122481290]
+[node name="Orb" type="Node2D" unique_id=1409339171]
 script = ExtResource("1_cvnsp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117317918]
-texture = ExtResource("1_v0iea")
-
-[node name="HitBox" type="CollisionShape2D" parent="." unique_id=270889441]
-scale = Vector2(6.2, 6.2)
-shape = SubResource("RectangleShape2D_cvnsp")
-
-[node name="Timer" type="Timer" parent="." unique_id=557621179]
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961877531]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_6t5aa")

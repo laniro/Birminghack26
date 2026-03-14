@@ -5,11 +5,15 @@ extends Area2D
 @export var maxhalth = 1
 @export var health = 1
 @export var defense = 0.1
+<<<<<<< HEAD
 @export var trueDefense = 0
 
 
 var velocity = Vector2(0, 0)
 
+=======
+@export var trueDefense = 0.01
+>>>>>>> 53a60468fe02bc93049b535c96158c8cf7766c27
 var screensize
 
 signal hit
@@ -69,7 +73,7 @@ func upgrade(type, isArithmetic, amount):
 		if (isArithmetic):
 			defense += amount
 		else:
-			defense *= amount
+			defense *= (1+amount)
 	if (type=="MaxHeal"):
 		if (isArithmetic):
 			maxhalth += amount
@@ -80,9 +84,13 @@ func upgrade(type, isArithmetic, amount):
 			speed += amount
 		else:
 			speed *= amount
+<<<<<<< HEAD
 
 func summonOrb(colour) -> void:
 	var orb = orb_scene.instantiate()
 	get_tree().current_scene.add_child(orb)
 	orb.parent = self
 	orb.velocity = velocity
+=======
+			#
+>>>>>>> 53a60468fe02bc93049b535c96158c8cf7766c27
