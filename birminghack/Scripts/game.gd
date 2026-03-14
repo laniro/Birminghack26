@@ -79,7 +79,6 @@ func on_death():
 func _on_player_shoot(pos: Variant) -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.position = pos
-	print(bullet)
 	$Weapons.add_child(bullet)
 
 
@@ -91,3 +90,9 @@ func _on_player_swing(pos: Variant) -> void:
 
 func _on_player_hit() -> void:
 	$Player.Hit(1, false)
+
+
+func _on_player_death(maxScore) -> void:
+	$CanvasLayer/TextEdit.text = "You died Max Score: " + str(maxScore)
+	$CanvasLayer/TextEdit.visible = true
+	get_tree().paused = true

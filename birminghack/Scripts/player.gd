@@ -10,11 +10,13 @@ extends Area2D
 @export var level = 0
 var velocity = Vector2(0, 0)
 var canSwing = true
+var maxScore = 0
 #var screensize
 
 signal hit
 signal shoot(pos)
 signal swing(pos)
+signal death
 
 var orb_scene: PackedScene = load("res://Scenes/orb.tscn")
 
@@ -56,6 +58,7 @@ func _process(delta: float) -> void:
 
 func onKill():
 	time += 5
+	maxScore = max(time, maxScore)
 
 func _on_timer_timeout() -> void:
 	time -= 1
@@ -89,6 +92,9 @@ func Hit(damage, isTrue):
 	if (randf()>overallDefense):
 		health -= damage
 	updateHealthBar()
+	print(health)
+	if (health == 0):
+		death.emit(maxScore)
 	
 func heal(amount):
 	health = min(maxhalth,health+amount)

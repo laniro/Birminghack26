@@ -63,6 +63,21 @@ grow_vertical = 0
 value = 100.0
 show_percentage = false
 
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer" unique_id=196583620]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -297.0
+offset_top = -25.0
+offset_right = 3.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=502556556]
 z_index = -1
 tile_set = SubResource("TileSet_1l0tm")
@@ -74,6 +89,8 @@ script = ExtResource("4_3dryh")
 
 [node name="Weapons" type="Node" parent="." unique_id=1756171209]
 
+[connection signal="death" from="Player" to="." method="_on_player_death"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
 [connection signal="swing" from="Player" to="." method="_on_player_swing"]
 [connection signal="id_pressed" from="PopupMenu" to="." method="id_pressed"]
