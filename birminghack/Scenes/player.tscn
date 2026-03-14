@@ -5,17 +5,17 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 
-[node name="Player" type="Area2D" unique_id=678769424]
+[node name="Player" type="Area2D" unique_id=1122481290]
 script = ExtResource("1_cvnsp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=928141872]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117317918]
 texture = ExtResource("1_v0iea")
 
-[node name="HitBox" type="CollisionShape2D" parent="." unique_id=155900961]
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=270889441]
 scale = Vector2(6.2, 6.2)
 shape = SubResource("RectangleShape2D_cvnsp")
 
-[node name="Timer" type="Timer" parent="." unique_id=454424526]
+[node name="Timer" type="Timer" parent="." unique_id=557621179]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

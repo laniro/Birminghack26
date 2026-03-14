@@ -5,10 +5,16 @@ extends Area2D
 @export var maxhalth = 1
 @export var health = 1
 @export var defense = 0.1
-@export var trueDefense = 0.01
+@export var trueDefense = 0
+
+
+var velocity = Vector2(0, 0)
+
 var screensize
 
 signal hit
+
+var orb_scene: PackedScene = load("res://Scenes/orb.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,11 +23,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var velocity = Vector2(0, 0)
 	if Input.is_action_pressed("moveUp"):
-		velocity.y = 1
-	elif Input.is_action_pressed("moveDown"):
 		velocity.y = -1
+	elif Input.is_action_pressed("moveDown"):
+		velocity.y = 1
 	if Input.is_action_pressed("moveRight"):
 		velocity.x = 1
 	elif Input.is_action_pressed("moveLeft"):
@@ -29,6 +34,10 @@ func _process(delta: float) -> void:
 	velocity = velocity.normalized() * speed
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screensize)
+	velocity = Vector2(0, 0)
+	
+	if Input.is_action_pressed("summon"):
+		summonOrb(Vector3(1,1,1))
 
 
 
@@ -74,4 +83,9 @@ func upgrade(type, isArithmetic, amount):
 			speed += amount
 		else:
 			speed *= amount
-			#
+
+func summonOrb(colour) -> void:
+	var orb = orb_scene.instantiate()
+	get_tree().current_scene.add_child(orb)
+	orb.parent = self
+	orb.velocity = velocity
