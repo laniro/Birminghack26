@@ -5,8 +5,6 @@
 
 [node name="Orb" type="Node2D" unique_id=1409339171]
 script = ExtResource("1_ryljl")
-rotationVelocity = null
-lifetime = null
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1961877531]
 scale = Vector2(0.3, 0.3)
