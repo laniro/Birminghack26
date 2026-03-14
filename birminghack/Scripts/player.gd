@@ -60,7 +60,7 @@ func upgrade(type, isArithmetic, amount):
 		if (isArithmetic):
 			defense += amount
 		else:
-			defense *= amount
+			defense *= (1+amount)
 	if (type=="MaxHeal"):
 		if (isArithmetic):
 			maxhalth += amount
@@ -71,3 +71,4 @@ func upgrade(type, isArithmetic, amount):
 			speed += amount
 		else:
 			speed *= amount
+			#
