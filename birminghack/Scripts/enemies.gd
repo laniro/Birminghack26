@@ -5,6 +5,8 @@ var enemyspeed
 var parent
 
 var xp_scene: PackedScene = load("res://Scenes/ExperienceOrb.tscn")
+var magnet_scene: PackedScene = load("res://Scenes/Magnet.tscn")
+@export var magnet_chance: int = 100
 
 signal killed
 
@@ -23,17 +25,20 @@ func _process(delta: float) -> void:
 	position += velocity
 
 func summonXP() -> void:
-	var xp = xp_scene.instantiate()
-	get_tree().current_scene.add_child(xp)
-	xp.initiate(self)
+	var rng := RandomNumberGenerator.new()
+	if rng.randi_range(1,magnet_chance) == 1:
+		var magnet = magnet_scene.instantiate()
+		get_node("/root/Game").add_child(magnet)
+		magnet.initiate(self)
+	else:
+		var xp = xp_scene.instantiate()
+		get_node("/root/Game/XP").add_child(xp)
+		xp.initiate(self)
 
 func kill():
 	summonXP()
 	killed.emit()
 	queue_free()
-
-
-
 
 func _on_area_entered(area: Area2D) -> void:
 	queue_free()
