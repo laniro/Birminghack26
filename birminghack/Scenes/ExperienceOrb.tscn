@@ -94,6 +94,7 @@ animations = [{
 radius = 8.0
 
 [node name="ExperienceOrb" type="Area2D" unique_id=1474659147]
+collision_layer = 8
 script = ExtResource("1_et3x6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1628973560]
