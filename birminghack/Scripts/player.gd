@@ -39,7 +39,8 @@ func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 	rotate(PI/2)
 	
-
+	if Input.is_action_just_pressed("summon"):
+		summonOrb()
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -85,8 +86,7 @@ func upgrade(type, isArithmetic, amount):
 		else:
 			speed *= amount
 
-func summonOrb(colour) -> void:
+func summonOrb() -> void:
 	var orb = orb_scene.instantiate()
 	get_tree().current_scene.add_child(orb)
-	orb.parent = self
-	orb.velocity = velocity
+	orb.init(self)
