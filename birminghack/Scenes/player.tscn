@@ -7,7 +7,7 @@
 
 [node name="Player" type="Area2D" unique_id=1122481290]
 visibility_layer = 2
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117317918]
@@ -23,7 +23,11 @@ autostart = true
 [node name="BulletStart" type="Marker2D" parent="." unique_id=1265642229]
 position = Vector2(0, -72)
 
+[node name="SwordCoolDown" type="Timer" parent="." unique_id=1182788630]
+wait_time = 0.7
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SwordCoolDown" to="." method="_on_sword_cool_down_timeout"]

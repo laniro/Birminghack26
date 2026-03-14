@@ -4,6 +4,7 @@ extends Node2D
 @export var enemy_speed = 300
 var enemy_scene: PackedScene = load("res://Scenes/enemies.tscn")
 var bullet_scene: PackedScene = load("res://Scenes/Bullet.tscn")
+var sword_scene: PackedScene = load("res://Scenes/sword.tscn")
 var wave_count = 1
 var player
 
@@ -63,15 +64,23 @@ func _on_timer_timeout() -> void:
 		enemy.enemyspeed = enemy_speed
 		enemy.player = player
 		$Enemies.add_child(enemy)
-		enemy.connect("collision", on_enemy_collision)
+		enemy.connect("killed", on_death)
 	wave_count += 1
 
-func on_enemy_collision(dmg, isTrue):
-	print("Enemy collided")
-	$Player.Hit(dmg, isTrue)
-
+func on_death():
+	$Player.onKill()
 
 func _on_player_shoot(pos: Variant) -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.position = pos
-	$Bullets.add_child(bullet)
+	$Weapons.add_child(bullet)
+
+
+func _on_player_swing(pos: Variant) -> void:
+	var sword = sword_scene.instantiate()
+	sword.position = pos
+	$Weapons.add_child(sword)
+
+
+func _on_player_hit() -> void:
+	$Player.Hit(1, false)

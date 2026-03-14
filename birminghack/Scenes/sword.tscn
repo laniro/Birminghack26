@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cpbog5cv3ge15"]
+
+[ext_resource type="Script" uid="uid://c1vaqtdusqadx" path="res://Scripts/sword.gd" id="1_goa0h"]
+[ext_resource type="Texture2D" uid="uid://du34ie853qn05" path="res://Graphics/triangle_temp-removebg-preview.png" id="2_6wdhb"]
+
+[node name="Sword" type="Area2D" unique_id=1636609195]
+visibility_layer = 3
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_goa0h")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=303478562]
+visibility_layer = 3
+polygon = PackedVector2Array(0, 0, -200, -200, 200, -200)
+
+[node name="Timer" type="Timer" parent="." unique_id=1782950874]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=964482547]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -96)
+rotation = 3.1415927
+scale = Vector2(0.8, 0.4)
+texture = ExtResource("2_6wdhb")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

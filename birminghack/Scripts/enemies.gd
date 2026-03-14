@@ -4,10 +4,9 @@ var player
 var enemyspeed
 var parent
 
-
-signal collision(dmg, isTrue)
-
 var xp_scene: PackedScene = load("res://Scenes/ExperienceOrb.tscn")
+
+signal killed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,11 +29,11 @@ func summonXP() -> void:
 
 func kill():
 	summonXP()
+	killed.emit()
 	queue_free()
 
 
 
 
 func _on_area_entered(area: Area2D) -> void:
-	collision.emit()
 	queue_free()

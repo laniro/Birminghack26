@@ -9,10 +9,12 @@ extends Area2D
 @export var exp = 0
 @export var level = 0
 var velocity = Vector2(0, 0)
+var canSwing = true
 #var screensize
 
 signal hit
 signal shoot(pos)
+signal swing(pos)
 
 var orb_scene: PackedScene = load("res://Scenes/orb.tscn")
 
@@ -45,13 +47,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("summon"):
 		summonOrb()
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("shoot"):
 		shoot.emit($BulletStart.global_position)
-
-
-func _on_body_entered(body: Node2D) -> void:
-	print("Player Hit")
-	hit.emit()
+	if (Input.is_action_just_pressed("swing") && canSwing):
+		swing.emit($BulletStart.global_position)
+		canSwing = false
+		$SwordCoolDown.start()
 
 func onKill():
 	time += 5
@@ -104,3 +105,11 @@ func summonOrb() -> void:
 	var orb = orb_scene.instantiate()
 	get_tree().current_scene.add_child(orb)
 	orb.initiate(self)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	hit.emit()
+
+
+func _on_sword_cool_down_timeout() -> void:
+	canSwing = true
