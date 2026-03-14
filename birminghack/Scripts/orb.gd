@@ -9,12 +9,20 @@ var velocity = Vector2(0,0)
 @export var lifetime = 15 #seconds (handily)
 var ttl = lifetime
 
+var images = [preload("res://Graphics/Orb1.png"),
+preload("res://Graphics/Orb2.png"),
+preload("res://Graphics/Orb3.png"),
+preload("res://Graphics/Orb4.png"),
+preload("res://Graphics/Orb5.png"),
+preload("res://Graphics/Orb6.png"),]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position = Vector2(0,0)
 	rotation_degrees = randf_range(0.0, 360.0)
 	rotationVelocity = randfn(0.0, 0.01)
 	target = get_global_mouse_position()
+	$Sprite.texture = images.pick_random()
 
 func initiate(p):
 	parent = p
