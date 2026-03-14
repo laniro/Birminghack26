@@ -96,4 +96,5 @@ script = ExtResource("1_et3x6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1628973560]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_e7m4r")
-frame_progress = 0.27445462
+autoplay = "default"
+frame_progress = 0.16829637

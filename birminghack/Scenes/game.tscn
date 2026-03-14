@@ -1,14 +1,28 @@
 [gd_scene format=3 uid="uid://410lc6q65l3q"]
 
+[ext_resource type="Script" uid="uid://b7nf8aqw1fadi" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://c40826trlpkd" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="Script" uid="uid://b7nf8aqw1fadi" path="res://Scripts/game.gd" id="1_wrm1d"]
+[ext_resource type="Script" path="res://Scenes/tile_map_layer.gd" id="4_3dryh"]
+[ext_resource type="Texture2D" uid="uid://b6pn778e77t3q" path="res://Graphics/Tiles.png" id="4_wowpa"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
+texture = ExtResource("4_wowpa")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1l0tm"]
+sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
 [node name="Game" type="Node2D" unique_id=388217617]
-script = ExtResource("1_wrm1d")
+script = ExtResource("1_3dryh")
+enemy_distance = 1500
 
 [node name="Player" parent="." unique_id=409008626 instance=ExtResource("1_ebmjs")]
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1648720604]
+zoom = Vector2(0.5, 0.5)
 limit_enabled = false
 position_smoothing_enabled = true
 
@@ -20,6 +34,16 @@ position_smoothing_enabled = true
 autostart = true
 
 [node name="Enemies" type="Node" parent="." unique_id=183761389]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1600962164]
+z_index = -1
+tile_set = SubResource("TileSet_1l0tm")
+script = ExtResource("4_3dryh")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1600962164]
+z_index = -1
+tile_set = SubResource("TileSet_1l0tm")
+script = ExtResource("4_3dryh")
 
 [node name="Bullets" type="Node" parent="." unique_id=1223986288]
 
