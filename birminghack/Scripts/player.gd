@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	hit.emit()
+	Hit(1, false)
 
 func onKill():
 	time += 5

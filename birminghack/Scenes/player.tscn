@@ -16,6 +16,8 @@ scale = Vector2(6.2, 6.2)
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Timer" type="Timer" parent="." unique_id=557621179]
+autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
