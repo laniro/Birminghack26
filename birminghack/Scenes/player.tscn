@@ -5,10 +5,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 
-[node name="Player" type="Area2D" unique_id=1190122655]
+[node name="Player" type="Area2D" unique_id=1122481290]
 script = ExtResource("1_cvnsp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1695748419]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117317918]
 texture = ExtResource("1_v0iea")
 
 [node name="HitBox" type="CollisionShape2D" parent="." unique_id=270889441]
