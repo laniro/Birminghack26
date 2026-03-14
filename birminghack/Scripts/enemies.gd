@@ -1,11 +1,11 @@
 extends Area2D
 
-
 var player
 var enemyspeed
 var parent
 
-signal collision
+
+signal collision(dmg, isTrue)
 
 var xp_scene: PackedScene = load("res://Scenes/ExperienceOrb.tscn")
 
@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	var vector_to_player = player.position - position
 	
 	if vector_to_player.length() < 50: 
+		collision.emit(1, false)
 		summonXP()
 		queue_free()
 	
