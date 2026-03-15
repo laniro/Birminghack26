@@ -15,6 +15,8 @@ const FOREST = Vector2(1,0)
 const STONE = Vector2(0,1)
 const PATH = Vector2(1,1)
 
+const POISON_CHANCE = 4
+
 @onready var player = $"../Player"
 
 var generated_chunks = {}
@@ -63,11 +65,15 @@ func process_chunk_queue():
 				set_cell(Vector2i(wx,wy),0, atlas)
 				
 		for  i in range ((chunk_pos.x+chunk_pos.y)):
-			var poi = poison_scene.instantiate()
-			poi.position = Vector2i((chunk_pos.x*CHUNK_SIZE+randi_range(0,CHUNK_SIZE))*TILEDIM , (chunk_pos.y*CHUNK_SIZE+randi_range(0,CHUNK_SIZE))*TILEDIM)
-			poi.permanent = true
-			$"../Enemies".add_child(poi)
-				
+			var rng := RandomNumberGenerator.new()
+			if rng.randi_range(0,POISON_CHANCE) == 1:
+				var poi = poison_scene.instantiate()
+				poi.position = Vector2i(
+					(chunk_pos.x*CHUNK_SIZE+randi_range(0,CHUNK_SIZE))*TILEDIM, 
+					(chunk_pos.y*CHUNK_SIZE+randi_range(0,CHUNK_SIZE))*TILEDIM
+				)
+				poi.permanent = true
+				$"../Enemies".add_child(poi)
 		
 
 func check_chunk_loading():

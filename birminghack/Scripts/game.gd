@@ -55,6 +55,7 @@ func on_death(pos, effect):
 func effects(effect, pos):
 	if effect == "M":
 		var poison = poison_scene.instantiate()
+		poison.permanent = false
 		call_deferred("addEffects", poison, pos)
 		summonXP(pos + Vector2(0.5, 0.5))
 		

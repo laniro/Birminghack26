@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://b40odlxnkxuy" path="res://Graphics/Minecraft Damage (Oof) - Sound Effect (HD).mp3" id="6_i6g32"]
 [ext_resource type="Texture2D" uid="uid://bolmvhlyr1yk5" path="res://Graphics/albert.png" id="8_h4fw4"]
 [ext_resource type="Texture2D" uid="uid://b4nxr0mvpcfnh" path="res://enemies.png" id="8_ldgsr"]
-[ext_resource type="Script" uid="uid://1ntiqwfxyrnv" path="res://Scripts/button.gd" id="9_o5yvi"]
+[ext_resource type="Script" path="res://Scripts/button.gd" id="9_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://corkpt4ajuexg" path="res://Graphics/marcus_happy.png" id="10_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://bq373wxfushoc" path="res://boss.png" id="11_nnt18"]
 [ext_resource type="Texture2D" uid="uid://ilvaekvt8stx" path="res://Graphics/pizza.png" id="12_ewbju"]

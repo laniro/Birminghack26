@@ -22,8 +22,7 @@ texture = ExtResource("2_yuubm")
 [node name="Tick" type="Timer" parent="." unique_id=1205756639]
 
 [node name="Lifetime" type="Timer" parent="." unique_id=1327413369]
-wait_time = 0.5
-autostart = true
+wait_time = 5.0
 
 [node name="Cloud" type="Sprite2D" parent="." unique_id=632883893]
 position = Vector2(0, -30)
