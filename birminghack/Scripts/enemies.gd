@@ -10,7 +10,6 @@ signal killed(pos)
 func _ready() -> void:
 	player = get_node("/root/Game/Player")
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var vector_to_player = player.position - position
