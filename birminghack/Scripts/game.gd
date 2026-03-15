@@ -21,9 +21,6 @@ enum PopupID{
 
 var _last_mouse_position
 
-@onready var _pmA = $PopupMenu
-@onready var _pmM = $PopupMenu2
-
 func _ready() -> void:
 	player = get_node("/root/Game/Player")
 
@@ -50,14 +47,15 @@ func _on_timer_timeout() -> void:
 
 func on_death(pos):
 	summonXP(pos)
-	$Player.onKill()
+	$Player.onKill() # update score
 
 func summonXP(pos) -> void:
 	var rng := RandomNumberGenerator.new()
 	if rng.randi_range(1,magnet_chance) == 1:
 		var magnet = magnet_scene.instantiate()
-		get_node("/root/Game").add_child(magnet)
+		$Drops.add_child(magnet)
 		magnet.initiate(self)
+		magnet.position = pos
 	else:
 		var xp = xp_scene.instantiate()
 		$XP.add_child(xp)
@@ -69,16 +67,10 @@ func _on_player_shoot(pos: Variant) -> void:
 	bullet.position = pos
 	$Weapons.add_child(bullet)
 
-
 func _on_player_swing(pos: Variant) -> void:
 	var sword = sword_scene.instantiate()
 	sword.position = pos
 	$Weapons.add_child(sword)
-
-
-func _on_player_hit() -> void:
-	$Player.Hit(1, false)
-
 
 func _on_player_death(maxScore) -> void:
 	$CanvasLayer/TextEdit.text = "You died Max Score: " + str(maxScore)

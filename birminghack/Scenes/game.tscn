@@ -99,8 +99,9 @@ script = ExtResource("4_3dryh")
 
 [node name="Weapons" type="Node" parent="." unique_id=1756171209]
 
+[node name="Drops" type="Node" parent="." unique_id=752259587]
+
 [connection signal="death" from="Player" to="." method="_on_player_death"]
-[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
 [connection signal="swing" from="Player" to="." method="_on_player_swing"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
