@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 	var velocity = (player.position - position).normalized()
 	position += velocity * speed * delta
 
-
 func _on_area_entered(area: Area2D) -> void:
 	player.gainExp(value)
 	queue_free()
