@@ -8,6 +8,7 @@ var bullet_scene: PackedScene = load("res://Scenes/Bullet.tscn")
 var sword_scene: PackedScene = load("res://Scenes/sword.tscn")
 var xp_scene: PackedScene = load("res://Scenes/ExperienceOrb.tscn")
 var magnet_scene: PackedScene = load("res://Scenes/Magnet.tscn")
+var poison_scene: PackedScene = load("res://Scenes/poison.tscn")
 var wave_count = 1
 var player
 
@@ -38,6 +39,7 @@ func _on_timer_timeout() -> void:
 			enemy.get_child(1).texture = preload("res://boss.png")
 			enemy.damage = 3
 			enemy.health = 5
+			enemy.effect = "M"
 		
 		
 		
@@ -48,9 +50,19 @@ func _on_timer_timeout() -> void:
 		enemy.connect("killed", on_death)
 	wave_count += 1
 
-func on_death(pos):
+func on_death(pos, effect):
+	if effect != "m":
+		effects(effect, pos)
 	summonXP(pos)
 	$Player.onKill() # update score
+
+func effects(effect, pos):
+	if effect == "M":
+		var poison = poison_scene.instantiate()
+		poison.position = pos
+		poison.character = $Player
+		$Enemies.add_child(poison)
+		summonXP(pos + Vector2(0.5, 0.5))
 
 func summonXP(pos) -> void:
 	var rng := RandomNumberGenerator.new()
