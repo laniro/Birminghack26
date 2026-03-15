@@ -59,23 +59,32 @@ func on_death(pos, effect):
 func effects(effect, pos):
 	if effect == "M":
 		var poison = poison_scene.instantiate()
-		poison.position = pos
-		poison.character = $Player
-		$Enemies.add_child(poison)
+		call_deferred("addEffects", poison, pos)
 		summonXP(pos + Vector2(0.5, 0.5))
+		
+func addEffects(poison,pos):
+	poison.position = pos
+	poison.character = $Player
+	$Enemies.add_child(poison)
 
 func summonXP(pos) -> void:
 	var rng := RandomNumberGenerator.new()
 	if rng.randi_range(1,magnet_chance) == 1:
 		var magnet = magnet_scene.instantiate()
-		$Drops.add_child(magnet)
-		magnet.initiate(self)
-		magnet.position = pos
+		call_deferred("addMagnet", magnet, pos)
 	else:
 		var xp = xp_scene.instantiate()
-		$XP.add_child(xp)
-		xp.initiate(self)
-		xp.position = pos
+		call_deferred("addXP", xp, pos)
+
+func addMagnet(magnet,pos):
+	$Drops.add_child(magnet)
+	magnet.initiate(self)
+	magnet.position = pos
+
+func addXP(xp,pos):
+	$XP.add_child(xp)
+	xp.initiate(self)
+	xp.position = pos
 
 func _on_player_shoot(pos: Variant) -> void:
 	var bullet = bullet_scene.instantiate()

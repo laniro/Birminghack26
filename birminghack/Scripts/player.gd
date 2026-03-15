@@ -75,6 +75,7 @@ func gainExp(amount):
 
 func updateExperienceBar():
 	$"../CanvasLayer/ExperienceBar".value = 100*exp/(10*(level+1))
+	$"../CanvasLayer/ExperienceBar/Label".text = "Level: " + str(level)
 
 func updateHealthBar():
 	$"../CanvasLayer/HealthBar".value = 100*health/maxhalth
