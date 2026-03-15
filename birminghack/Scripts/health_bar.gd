@@ -10,6 +10,8 @@ var mode = "normal"
 func _ready() -> void:
 	normalsbBg.bg_color = Color("333333")
 	normalsbFill.bg_color = Color("e54032")
+	normalsbFill.corner_radius_top_right = 4
+	normalsbFill.corner_radius_bottom_right = 4
 	deathsbBg.bg_color = Color("333333")
 	var pc = PackedColorArray([Color("4f9405"),Color("ff0000")])
 	var pf = PackedFloat32Array([0.0, 1.0])
