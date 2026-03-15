@@ -17,6 +17,9 @@ texture = ExtResource("4_wowpa")
 [sub_resource type="TileSet" id="TileSet_1l0tm"]
 sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l0tm"]
+bg_color = Color(0.9823074, 0.3397587, 0.45975655, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g32"]
 border_width_left = 4
 border_width_top = 4
@@ -73,6 +76,7 @@ anchor_bottom = 1.0
 offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_1l0tm")
 value = 100.0
 show_percentage = false
 
