@@ -1,7 +1,7 @@
 extends Node2D
 
 var player;
-@export var xp_speed = 500;
+@export var xp_speed = 800;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("/root/Game/Player")
