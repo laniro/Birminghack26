@@ -4,6 +4,8 @@ var alt = FastNoiseLite.new()
 var temp = FastNoiseLite.new()
 var moisture = FastNoiseLite.new()
 
+var poison_scene: PackedScene = load("res://Scenes/poison.tscn")
+
 const CHUNK_SIZE = 128
 const TILEDIM = 16
 const CHUNKLOADTHRESHHOLD = 3000
@@ -58,6 +60,10 @@ func process_chunk_queue():
 					atlas = PATH
 				elif m < 4:
 					atlas = GRASS
+					
+				if a>9:
+					var poi = poison_scene.instantiate()
+					poi.position = Vector2i(wx,wy)
 				
 				
 				set_cell(Vector2i(wx,wy),0, atlas)
