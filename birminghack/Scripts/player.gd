@@ -120,7 +120,7 @@ func Hit(damage, isTrue):
 	if (randf()<=1/overallDefense):
 		health -= damage
 	updateHealthBar()
-	if (health == 0):
+	if (health <= 0):
 		death.emit(maxScore)
 	
 func heal(amount):
