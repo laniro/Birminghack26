@@ -17,7 +17,7 @@ func _on_area_exited(area: Area2D) -> void:
 
 func _on_tick_timeout() -> void:
 	if damage:
-		$Player.Hit(1, true)
+		$"../../Player".Hit(1, true)
 		$Tick.start()
 
 
