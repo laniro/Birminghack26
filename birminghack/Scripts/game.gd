@@ -3,6 +3,7 @@ extends Node2D
 @export var enemy_distance = 1500
 @export var enemy_speed = 300
 @export var magnet_chance: int = 100
+@export var matty_chance: float = 10
 var enemy_scene: PackedScene = load("res://Scenes/enemies.tscn")
 var bullet_scene: PackedScene = load("res://Scenes/Bullet.tscn")
 var sword_scene: PackedScene = load("res://Scenes/sword.tscn")
@@ -32,8 +33,7 @@ func _on_timer_timeout() -> void:
 		var x: float = player.position.x + enemy_distance*cos(rand_degs*0.0174532)
 		var y: float = player.position.y + enemy_distance*sin(rand_degs*0.0174532)
 		
-		var mattyChance = 0.1
-		if rng.randf() <= mattyChance:
+		if rng.randi_range(0,matty_chance) == 1:
 			enemy.get_child(1).texture = preload("res://boss.png")
 			enemy.damage = 3
 			enemy.health = 5
