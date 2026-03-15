@@ -72,6 +72,7 @@ func process_chunk_queue():
 		
 
 func check_chunk_loading():
+	
 	if not is_instance_valid(player):
 		return
 	var player_chunk = Vector2i(floor(player.global_position.x/(CHUNK_SIZE*TILEDIM)),floor(player.global_position.y/(CHUNK_SIZE*TILEDIM)))

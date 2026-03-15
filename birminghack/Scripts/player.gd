@@ -4,8 +4,8 @@ var speed = 400
 var time = 100
 var maxhalth = 10.0
 var health = 10.0
-var defense = 1.0
-var trueDefense = 0
+var defense = 1.5
+var trueDefense = 0.0
 var exp = 0
 var level = 0
 
@@ -120,7 +120,7 @@ func Hit(damage, isTrue):
 	if (!isTrue):
 		overallDefense +=defense
 	
-	if (randf()<=1):
+	if (randf()<=1/overallDefense):
 		health -= damage
 	updateHealthBar()
 	if (health <= 0):
