@@ -3,9 +3,9 @@ extends Area2D
 var player
 var enemyspeed
 var parent
+var damage
 
 signal killed(pos)
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("/root/Game/Player")

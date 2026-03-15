@@ -109,7 +109,7 @@ func summonOrb() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.collision_layer == 2 && $HitTimer.is_stopped():
 		_marcus()
-		Hit(1,false)
+		Hit(area.damage,false)
 
 func Hit(damage, isTrue):
 	var overallDefense = trueDefense

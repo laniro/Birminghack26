@@ -30,11 +30,6 @@ func _on_timer_timeout() -> void:
 		var rng := RandomNumberGenerator.new()
 		var rand_degs: int = rng.randi_range(0,360)
 	
-		var screen = Vector2(
-			get_viewport().get_visible_rect().size[0],
-			get_viewport().get_visible_rect().size[1]
-		)
-	
 		var x: float = player.position.x + enemy_distance*cos(rand_degs*0.0174532)
 		var y: float = player.position.y + enemy_distance*sin(rand_degs*0.0174532)
 	
