@@ -2,10 +2,10 @@ extends Area2D
 
 var speed = 400
 var time = 100
-var maxhalth = 20.0
-var health = 20.0
+var maxhalth = 10.0
+var health = 10.0
 var defense = 1.0
-var trueDefense = 1.0
+var trueDefense = 0
 var exp = 0
 var level = 0
 
@@ -18,6 +18,8 @@ signal swing(pos)
 signal death
 
 var orb_scene: PackedScene = load("res://Scenes/orb.tscn")
+var death_xp: int = 0
+var death_count: int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -60,6 +62,7 @@ func _on_timer_timeout() -> void:
 	
 func gainExp(amount):
 	exp += amount
+	death_xp += amount
 	if (exp>10*(level+1)):
 		exp-=10*(level+1)
 		level+=1
@@ -117,12 +120,11 @@ func Hit(damage, isTrue):
 	if (!isTrue):
 		overallDefense +=defense
 	
-	if (randf()<=1/overallDefense):
+	if (randf()<=1):
 		health -= damage
 	updateHealthBar()
 	if (health <= 0):
-		death.emit(maxScore)
-	
+		_death()
 func heal(amount):
 	health = min(maxhalth,health+amount)
 	updateHealthBar()
@@ -131,11 +133,27 @@ func _on_sword_cool_down_timeout() -> void:
 	canSwing = true
 
 func _marcus() -> void:
-	var hurt = load("res://Graphics/marcus_angry.png")
-	$Sprite2D.texture = hurt
-	$HitTimer.start(0.5)
+	if $InvunerabilityTimer.is_stopped():
+		var hurt = load("res://Graphics/marcus_angry.png")
+		$Sprite2D.texture = hurt
+		$HitTimer.start(0.5)
 
 func _on_hit_timer_timeout() -> void:
-	var idle = load("res://Graphics/marcus_happy.png")
-	$Sprite2D.texture = idle
-	$HitTimer.stop()
+	if $InvunerabilityTimer.is_stopped():
+		var idle = load("res://Graphics/marcus_happy.png")
+		$Sprite2D.texture = idle
+		$HitTimer.stop()
+
+func _death() -> void:
+	death_xp = 0
+	death_count += 1
+	$InvunerabilityTimer.start()
+	$Sprite2D.texture = load("res://Graphics/marcus_rage.png")
+
+func _on_invunerability_timer_timeout() -> void:
+	$InvunerabilityTimer.stop()
+	if death_xp < 2^2^death_count:
+		death.emit(maxScore)
+	else:
+		health = maxhalth
+		$Sprite2D.texture = load("res://Graphics/marcus_happy.png")

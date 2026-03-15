@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 	var velocity = vector_to_player * delta * enemyspeed
 	position += velocity
 
-
 func _on_area_entered(area: Area2D) -> void:
 	if area.collision_layer != 1:
 		health -= 1
