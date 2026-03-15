@@ -22,7 +22,8 @@ func _ready() -> void:
 	rotation_degrees = randf_range(0.0, 360.0)
 	rotationVelocity = randfn(0.0, 0.01)
 	target = get_global_mouse_position()
-	$Sprite.texture = images.pick_random()
+	#$Sprite.texture = images.pick_random()
+	$Sprite.texture = preload("res://Graphics/mug.png")
 
 func initiate(p):
 	parent = p
