@@ -10,20 +10,30 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if arithmeticNum > 0:
-		arithmeticNum -= 1
-		showArithmetic()
-	if multiplicativeNum > 0:
-		multiplicativeNum -= 1
-		showMultiplicative()
+	if menuType == "off":
+		if arithmeticNum > 0:
+			arithmeticNum -= 1
+			showArithmetic()
+		if multiplicativeNum > 0:
+			multiplicativeNum -= 1
+			showMultiplicative()
+	else:
+		if Input.is_action_just_pressed("Upgrade1"):
+			idx_clicked(0)
+		elif Input.is_action_just_pressed("Upgrade2"):
+			idx_clicked(1)
+		elif Input.is_action_just_pressed("Upgrade3"):
+			idx_clicked(2)
+		elif Input.is_action_just_pressed("Upgrade4"):
+			idx_clicked(3)
 
 func showArithmetic():
 	arithmeticNum += 1
 	if menuType == "off":
 		menuType = "arithmetic"
 		clear()
-		add_item("+1 Max Heath")
-		add_item("+10 Speed")
+		add_item("(1) +1 Max Heath")
+		add_item("(2) +10 Speed")
 		visible = true
 	
 func showMultiplicative():
@@ -31,9 +41,9 @@ func showMultiplicative():
 	if menuType == "off":
 		menuType = "multiplicative"
 		clear()
-		add_item("+10% Max Heath")
-		add_item("+10% defence")
-		add_item("+1% Speed")
+		add_item("(1) +10% Max Heath")
+		add_item("(2) +10% defence")
+		add_item("(3) +1% Speed")
 		visible = true
 
 func idx_clicked(i):
@@ -46,12 +56,16 @@ func idx_clicked(i):
 			$"../../Player".upgrade("Def",false,0.1)
 		elif i== 2:
 			$"../../Player".upgrade("Speed",false,0.01)
+		else:
+			multiplicativeNum += 1
 		multiplicativeNum -= 1
 	if menuType == "arithmetic":
 		if i== 0:
 			$"../../Player".upgrade("Heal",true,1)
 		elif i== 1:
 			$"../../Player".upgrade("Speed",true,10)
+		else:
+			arithmeticNum += 1
 		arithmeticNum -= 1
 	menuType = "off"
 	visible = false

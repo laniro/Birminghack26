@@ -11,6 +11,7 @@ script = ExtResource("1_goa0h")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=303478562]
 visibility_layer = 3
+rotation = 1.5707964
 polygon = PackedVector2Array(0, 0, -200, -200, 200, -200)
 
 [node name="Timer" type="Timer" parent="." unique_id=1782950874]
@@ -21,8 +22,8 @@ autostart = true
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=964482547]
 modulate = Color(1, 0, 0, 1)
 self_modulate = Color(1, 0, 0, 1)
-position = Vector2(0, -96)
-rotation = 3.1415927
+position = Vector2(96, 0)
+rotation = 4.712389
 scale = Vector2(0.8, 0.4)
 texture = ExtResource("2_6wdhb")
 

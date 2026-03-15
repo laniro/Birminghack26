@@ -12,20 +12,12 @@ var level = 0
 var velocity = Vector2(0, 0)
 var canSwing = true
 var maxScore = 0
-#var screensize
 
-signal hit
 signal shoot(pos)
 signal swing(pos)
 signal death
 
 var orb_scene: PackedScene = load("res://Scenes/orb.tscn")
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	#screensize = get_viewport_rect().size
-	pass
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -85,22 +77,6 @@ func updateHealthBar():
 	$"../CanvasLayer/HealthBar".value = 100*health/maxhalth
 	print(health)
 
-func Hit(damage, isTrue):
-	var overallDefense = trueDefense
-	if (!isTrue):
-		overallDefense +=defense
-	
-	if (randf()<=1/overallDefense):
-		health -= damage
-	updateHealthBar()
-	print(health)
-	if (health == 0):
-		death.emit(maxScore)
-	
-func heal(amount):
-	health = min(maxhalth,health+amount)
-	updateHealthBar()
-
 func upgrade(type, isArithmetic, amount):
 	if !isArithmetic:
 		amount += 1
@@ -130,16 +106,26 @@ func summonOrb() -> void:
 	get_tree().current_scene.add_child(orb)
 	orb.initiate(self)
 
-
 func _on_area_entered(area: Area2D) -> void:
 	if area.collision_layer == 2 && $HitTimer.is_stopped():
-		hit.emit()
+		_marcus()
+		Hit(1,false)
 
-func _on_hit() -> void:
-	_marcus()
-	Hit(1,false)
-
-
+func Hit(damage, isTrue):
+	var overallDefense = trueDefense
+	if (!isTrue):
+		overallDefense +=defense
+	
+	if (randf()<=1/overallDefense):
+		health -= damage
+	updateHealthBar()
+	if (health == 0):
+		death.emit(maxScore)
+	
+func heal(amount):
+	health = min(maxhalth,health+amount)
+	updateHealthBar()
+	
 func _on_sword_cool_down_timeout() -> void:
 	canSwing = true
 
