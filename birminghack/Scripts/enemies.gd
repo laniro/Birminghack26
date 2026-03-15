@@ -3,7 +3,7 @@ extends Area2D
 var player
 var enemyspeed
 var parent
-var damage
+var damage = 1
 
 signal killed(pos)
 # Called when the node enters the scene tree for the first time.
