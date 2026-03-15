@@ -112,6 +112,7 @@ func _on_area_entered(area: Area2D) -> void:
 		Hit(1,false)
 
 func Hit(damage, isTrue):
+	$"../AudioStreamPlayer2D".play()
 	var overallDefense = trueDefense
 	if (!isTrue):
 		overallDefense +=defense
