@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://csr3f71fcj6gs" path="res://Scripts/experience_bar.gd" id="5_v158k"]
 [ext_resource type="Script" uid="uid://by3ilb4m3e8si" path="res://Scripts/item_list.gd" id="5_wowpa"]
 [ext_resource type="AudioStream" uid="uid://b40odlxnkxuy" path="res://Graphics/Minecraft Damage (Oof) - Sound Effect (HD).mp3" id="6_i6g32"]
+[ext_resource type="Texture2D" uid="uid://b4nxr0mvpcfnh" path="res://enemies.png" id="8_ldgsr"]
+[ext_resource type="Script" uid="uid://1ntiqwfxyrnv" path="res://Scripts/button.gd" id="9_o5yvi"]
+[ext_resource type="Texture2D" uid="uid://corkpt4ajuexg" path="res://Graphics/marcus_happy.png" id="10_o5yvi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
 texture = ExtResource("4_wowpa")
@@ -28,6 +31,8 @@ gradient = SubResource("Gradient_v158k")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldgsr"]
 texture = SubResource("GradientTexture1D_h4fw4")
 axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v158k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g32"]
 border_width_left = 4
@@ -88,23 +93,21 @@ offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxTexture_ldgsr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v158k")
 value = 100.0
 show_percentage = false
 script = ExtResource("5_1l0tm")
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer" unique_id=100088308]
-custom_minimum_size = Vector2(500, 500)
-anchors_preset = 8
-anchor_left = 0.5
+custom_minimum_size = Vector2(300, 200)
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
-grow_horizontal = 2
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
 grow_vertical = 2
+theme_override_font_sizes/font_size = 30
 item_count = 1
 item_0/text = "tesrt"
 script = ExtResource("5_wowpa")
@@ -123,6 +126,72 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_i6g32")
+
+[node name="MainMenu" type="CanvasLayer" parent="." unique_id=1653185002]
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu" unique_id=959879427]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.5
+offset_top = -325.5
+offset_right = 325.5
+offset_bottom = 325.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_ldgsr")
+
+[node name="Button" type="Button" parent="MainMenu" unique_id=1078903126]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -135.48901
+offset_top = -148.0
+offset_right = 135.48975
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Play"
+script = ExtResource("9_o5yvi")
+
+[node name="Label" type="Label" parent="MainMenu" unique_id=1882179102]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 140
+text = "InfiniMisha"
+horizontal_alignment = 1
+
+[node name="Marcus" type="TextureRect" parent="MainMenu" unique_id=786919226]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_o5yvi")
+
+[node name="Albert" type="TextureRect" parent="MainMenu" unique_id=1902881483]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Matty" type="TextureRect" parent="MainMenu" unique_id=737936855]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pizza" type="TextureRect" parent="MainMenu" unique_id=981427712]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mug" type="TextureRect" parent="MainMenu" unique_id=2010234185]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sword" type="TextureRect" parent="MainMenu" unique_id=454163650]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=502556556]
 z_index = -1
@@ -145,3 +214,4 @@ stream = ExtResource("6_i6g32")
 [connection signal="swing" from="Player" to="." method="_on_player_swing"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="item_selected" from="CanvasLayer/ItemList" to="CanvasLayer/ItemList" method="idx_clicked"]
+[connection signal="pressed" from="MainMenu/Button" to="MainMenu/Button" method="pressed"]
