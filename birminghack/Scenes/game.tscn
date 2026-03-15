@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c40826trlpkd" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" path="res://Scripts/tile_map_layer.gd" id="4_3dryh"]
 [ext_resource type="Texture2D" uid="uid://b6pn778e77t3q" path="res://Graphics/Tiles.png" id="4_wowpa"]
+[ext_resource type="Script" uid="uid://by3ilb4m3e8si" path="res://Scenes/item_list.gd" id="5_wowpa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
 texture = ExtResource("4_wowpa")
@@ -24,14 +25,6 @@ script = ExtResource("1_3dryh")
 zoom = Vector2(0.5, 0.5)
 limit_enabled = false
 position_smoothing_enabled = true
-
-[node name="PopupMenu" type="PopupMenu" parent="." unique_id=464105625]
-shrink_height = false
-shrink_width = false
-
-[node name="PopupMenu2" type="PopupMenu" parent="." unique_id=688377991]
-shrink_height = false
-shrink_width = false
 
 [node name="Timer" type="Timer" parent="." unique_id=536050365]
 autostart = true
@@ -63,6 +56,23 @@ grow_vertical = 0
 value = 100.0
 show_percentage = false
 
+[node name="ItemList" type="ItemList" parent="CanvasLayer" unique_id=100088308]
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 1
+item_0/text = "tesrt"
+script = ExtResource("5_wowpa")
+
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=502556556]
 z_index = -1
 tile_set = SubResource("TileSet_1l0tm")
@@ -76,6 +86,5 @@ script = ExtResource("4_3dryh")
 
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
 [connection signal="swing" from="Player" to="." method="_on_player_swing"]
-[connection signal="id_pressed" from="PopupMenu" to="." method="id_pressed"]
-[connection signal="id_pressed" from="PopupMenu2" to="." method="id_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="item_selected" from="CanvasLayer/ItemList" to="CanvasLayer/ItemList" method="idx_clicked"]

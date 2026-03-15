@@ -68,9 +68,9 @@ func gainExp(amount):
 		exp-=10*(level+1)
 		level+=1
 		if level%5:
-			$"..".openPopupBasic()
+			$"../CanvasLayer/ItemList".showArithmetic()
 		else:
-			$"..".openPopupBonus()
+			$"../CanvasLayer/ItemList".showMultiplicative()
 	updateExperienceBar()
 	updateHealthBar()
 
