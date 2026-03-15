@@ -4,6 +4,8 @@ var player
 var enemyspeed
 var parent
 var damage = 1
+var health = 1.0
+var effect = "m"
 
 signal killed(pos)
 # Called when the node enters the scene tree for the first time.
@@ -19,8 +21,9 @@ func _process(delta: float) -> void:
 	var velocity = vector_to_player * delta * enemyspeed
 	position += velocity
 
-
 func _on_area_entered(area: Area2D) -> void:
 	if area.collision_layer != 1:
-		killed.emit(position)
-	queue_free()
+		health -= 1
+	if health <= 0:
+		killed.emit(position, effect)
+		queue_free()

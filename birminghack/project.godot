@@ -96,6 +96,7 @@ Upgrade4={
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Weapons"
 2d_physics/layer_4="Experience"
+2d_physics/layer_5="Effects"
 
 [physics]
 
