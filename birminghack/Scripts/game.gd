@@ -62,7 +62,7 @@ func summonXP(pos) -> void:
 		var xp = xp_scene.instantiate()
 		$XP.add_child(xp)
 		xp.initiate(self)
-		xp.global_position = pos
+		xp.position = pos
 
 func _on_player_shoot(pos: Variant) -> void:
 	var bullet = bullet_scene.instantiate()
