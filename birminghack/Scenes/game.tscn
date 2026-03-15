@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c40826trlpkd" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://c0deahf45c4jt" path="res://Scripts/tile_map_layer.gd" id="4_3dryh"]
 [ext_resource type="Texture2D" uid="uid://b6pn778e77t3q" path="res://Graphics/Tiles.png" id="4_wowpa"]
-[ext_resource type="Script" uid="uid://c2b3t4bsg12bm" path="res://Scripts/health_bar.gd" id="5_1l0tm"]
-[ext_resource type="Script" uid="uid://csr3f71fcj6gs" path="res://Scripts/experience_bar.gd" id="5_v158k"]
+[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="5_1l0tm"]
+[ext_resource type="Script" path="res://Scripts/experience_bar.gd" id="5_v158k"]
 [ext_resource type="Script" uid="uid://by3ilb4m3e8si" path="res://Scripts/item_list.gd" id="5_wowpa"]
 [ext_resource type="AudioStream" uid="uid://b40odlxnkxuy" path="res://Graphics/Minecraft Damage (Oof) - Sound Effect (HD).mp3" id="6_i6g32"]
+[ext_resource type="Texture2D" uid="uid://bolmvhlyr1yk5" path="res://Graphics/albert.png" id="8_h4fw4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
 texture = ExtResource("4_wowpa")
@@ -94,20 +95,38 @@ script = ExtResource("5_1l0tm")
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer" unique_id=100088308]
 custom_minimum_size = Vector2(500, 500)
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
 offset_top = -250.0
-offset_right = 250.0
+offset_right = 500.0
 offset_bottom = 250.0
-grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+theme_override_font_sizes/font_size = 35
 item_count = 1
 item_0/text = "tesrt"
 script = ExtResource("5_wowpa")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ItemList" unique_id=368406734]
+position = Vector2(389.99997, 341)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_h4fw4")
+
+[node name="Label" type="Label" parent="CanvasLayer/ItemList" unique_id=1339237308]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.05
+anchor_top = 0.637
+anchor_right = -0.05
+anchor_bottom = 0.637
+offset_top = 0.25
+offset_right = 437.0
+offset_bottom = 87.25
+theme_override_font_sizes/font_size = 30
+text = "What do you wish
+to purchase"
+horizontal_alignment = 1
 
 [node name="TextEdit" type="Label" parent="CanvasLayer" unique_id=1253855460]
 visible = false
