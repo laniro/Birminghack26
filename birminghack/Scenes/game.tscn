@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://c40826trlpkd" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://c0deahf45c4jt" path="res://Scripts/tile_map_layer.gd" id="4_3dryh"]
 [ext_resource type="Texture2D" uid="uid://b6pn778e77t3q" path="res://Graphics/Tiles.png" id="4_wowpa"]
+[ext_resource type="Script" uid="uid://c2b3t4bsg12bm" path="res://Scripts/health_bar.gd" id="5_1l0tm"]
+[ext_resource type="Script" uid="uid://csr3f71fcj6gs" path="res://Scripts/experience_bar.gd" id="5_v158k"]
 [ext_resource type="Script" uid="uid://by3ilb4m3e8si" path="res://Scripts/item_list.gd" id="5_wowpa"]
 [ext_resource type="AudioStream" uid="uid://b40odlxnkxuy" path="res://Graphics/Minecraft Damage (Oof) - Sound Effect (HD).mp3" id="6_i6g32"]
 
@@ -17,8 +19,15 @@ texture = ExtResource("4_wowpa")
 [sub_resource type="TileSet" id="TileSet_1l0tm"]
 sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l0tm"]
-bg_color = Color(0.9823074, 0.3397587, 0.45975655, 1)
+[sub_resource type="Gradient" id="Gradient_v158k"]
+colors = PackedColorArray(0.30960283, 0.5818921, 0.020829063, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h4fw4"]
+gradient = SubResource("Gradient_v158k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldgsr"]
+texture = SubResource("GradientTexture1D_h4fw4")
+axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g32"]
 border_width_left = 4
@@ -59,6 +68,7 @@ anchor_right = 1.0
 offset_bottom = 27.0
 grow_horizontal = 2
 show_percentage = false
+script = ExtResource("5_v158k")
 
 [node name="Label" type="Label" parent="CanvasLayer/ExperienceBar" unique_id=324855501]
 layout_mode = 1
@@ -67,6 +77,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "Level: 0"
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=153278961]
 anchors_preset = 12
@@ -76,9 +87,10 @@ anchor_bottom = 1.0
 offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_1l0tm")
+theme_override_styles/background = SubResource("StyleBoxTexture_ldgsr")
 value = 100.0
 show_percentage = false
+script = ExtResource("5_1l0tm")
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer" unique_id=100088308]
 custom_minimum_size = Vector2(500, 500)

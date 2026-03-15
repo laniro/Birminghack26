@@ -50,6 +50,9 @@ func _process(delta: float) -> void:
 		swing.emit($BulletStart.global_position)
 		canSwing = false
 		$SwordCoolDown.start()
+	
+	if $"../CanvasLayer/HealthBar".mode == "death":
+		$"../CanvasLayer/HealthBar".value = 100*($InvunerabilityTimer.wait_time-$InvunerabilityTimer.time_left)/$InvunerabilityTimer.wait_time
 
 func onKill():
 	time += 5
@@ -71,10 +74,12 @@ func gainExp(amount):
 		else:
 			$"../CanvasLayer/ItemList".showMultiplicative()
 	updateExperienceBar()
-	updateHealthBar()
 
 func updateExperienceBar():
-	$"../CanvasLayer/ExperienceBar".value = 100*xp/(10*(level+1))
+	if $"../CanvasLayer/ExperienceBar".mode == "death":
+		$"../CanvasLayer/ExperienceBar".value = (100.0*death_xp)/(2**death_count)
+	else:
+		$"../CanvasLayer/ExperienceBar".value = 100*xp/(10*(level+1))
 	$"../CanvasLayer/ExperienceBar/Label".text = "Level: " + str(level)
 
 func updateHealthBar():
@@ -123,7 +128,7 @@ func Hit(damage, isTrue):
 	if (randf()<=1/overallDefense):
 		health -= damage
 	updateHealthBar()
-	if (health <= 0):
+	if (health <= 0) && $InvunerabilityTimer.is_stopped():
 		_death()
 func heal(amount):
 	health = min(maxhalth,health+amount)
@@ -147,13 +152,19 @@ func _on_hit_timer_timeout() -> void:
 func _death() -> void:
 	death_xp = 0
 	death_count += 1
+	$"../CanvasLayer/ExperienceBar".switchMode("death")
+	updateExperienceBar()
+	$"../CanvasLayer/HealthBar".switchMode("death")
 	$InvunerabilityTimer.start()
 	$Sprite2D.texture = load("res://Graphics/marcus_fucking_died.png")
 
 func _on_invunerability_timer_timeout() -> void:
 	$InvunerabilityTimer.stop()
-	if death_xp < 2^2^death_count:
+	if death_xp < (2**death_count):
 		death.emit(maxScore)
 	else:
+		death_xp = 0
 		health = maxhalth
 		$Sprite2D.texture = load("res://Graphics/marcus_happy.png")
+	$"../CanvasLayer/ExperienceBar".switchMode("apples")
+	$"../CanvasLayer/HealthBar".switchMode("pears")
