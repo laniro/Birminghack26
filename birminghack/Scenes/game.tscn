@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b7nf8aqw1fadi" path="res://Scripts/game.gd" id="1_3dryh"]
 [ext_resource type="PackedScene" uid="uid://c40826trlpkd" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="Script" uid="uid://c0deahf45c4jt" path="res://Scripts/tile_map_layer.gd" id="4_3dryh"]
+[ext_resource type="Script" path="res://Scripts/tile_map_layer.gd" id="4_3dryh"]
 [ext_resource type="Texture2D" uid="uid://b6pn778e77t3q" path="res://Graphics/Tiles.png" id="4_wowpa"]
 [ext_resource type="Script" uid="uid://by3ilb4m3e8si" path="res://Scripts/item_list.gd" id="5_wowpa"]
+[ext_resource type="AudioStream" uid="uid://b40odlxnkxuy" path="res://Graphics/Minecraft Damage (Oof) - Sound Effect (HD).mp3" id="6_i6g32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
 texture = ExtResource("4_wowpa")
@@ -93,6 +94,9 @@ script = ExtResource("4_3dryh")
 [node name="XP" type="Node" parent="." unique_id=1518550699]
 
 [node name="Weapons" type="Node" parent="." unique_id=1756171209]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2048481016]
+stream = ExtResource("6_i6g32")
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
