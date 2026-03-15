@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	position += velocity
 
 func kill():
-	killed.emit()
+	killed.emit(global_position)
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:

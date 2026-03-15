@@ -48,11 +48,11 @@ func _on_timer_timeout() -> void:
 		enemy.connect("killed", on_death)
 	wave_count += 1
 
-func on_death():
-	summonXP()
+func on_death(pos):
+	summonXP(pos)
 	$Player.onKill()
 
-func summonXP() -> void:
+func summonXP(pos) -> void:
 	var rng := RandomNumberGenerator.new()
 	if rng.randi_range(1,magnet_chance) == 1:
 		var magnet = magnet_scene.instantiate()
@@ -62,6 +62,7 @@ func summonXP() -> void:
 		var xp = xp_scene.instantiate()
 		$XP.add_child(xp)
 		xp.initiate(self)
+		xp.global_position = pos
 
 func _on_player_shoot(pos: Variant) -> void:
 	var bullet = bullet_scene.instantiate()
