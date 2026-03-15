@@ -41,8 +41,6 @@ func _on_timer_timeout() -> void:
 			enemy.health = 5
 			enemy.effect = "M"
 		
-		
-		
 		enemy.position = Vector2(x,y)
 		enemy.enemyspeed = enemy_speed
 		enemy.player = player
@@ -78,12 +76,10 @@ func summonXP(pos) -> void:
 
 func addMagnet(magnet,pos):
 	$Drops.add_child(magnet)
-	magnet.initiate(self)
 	magnet.position = pos
 
 func addXP(xp,pos):
 	$XP.add_child(xp)
-	xp.initiate(self)
 	xp.position = pos
 
 func _on_player_shoot(pos: Variant) -> void:

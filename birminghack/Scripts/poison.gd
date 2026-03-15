@@ -3,6 +3,7 @@ extends Area2D
 var character
 var damage = false
 var permanent = false
+var life = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,5 +32,10 @@ func _on_tick_timeout() -> void:
 
 
 func _on_lifetime_timeout() -> void:
-	if !permanent:
+	life -= 0.1
+	$Base.modulate.a = life
+	$Cloud.modulate.a = life
+	if !permanent && life == 0:
 		queue_free()
+	if !permanent:
+		$Lifetime.start()

@@ -8,9 +8,6 @@ func _ready() -> void:
 	player = get_node("/root/Game/Player")
 	value = randf()*4
 
-func initiate(parent):
-	position = parent.position
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var velocity = (player.position - position).normalized()

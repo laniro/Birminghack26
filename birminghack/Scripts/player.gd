@@ -79,7 +79,6 @@ func updateExperienceBar():
 
 func updateHealthBar():
 	$"../CanvasLayer/HealthBar".value = 100*health/maxhalth
-	print(health)
 
 func upgrade(type, isArithmetic, amount):
 	if !isArithmetic:
@@ -149,7 +148,7 @@ func _death() -> void:
 	death_xp = 0
 	death_count += 1
 	$InvunerabilityTimer.start()
-	$Sprite2D.texture = load("res://Graphics/marcus_rage.png")
+	$Sprite2D.texture = load("res://Graphics/marcus_fucking_died.png")
 
 func _on_invunerability_timer_timeout() -> void:
 	$InvunerabilityTimer.stop()

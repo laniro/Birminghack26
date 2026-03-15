@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://df418o1ovncfg"]
+[gd_scene format=3 uid="uid://dljwvt3784h3y"]
 
 [ext_resource type="Script" path="res://Scripts/magnet.gd" id="1_p8y1d"]
 [ext_resource type="Texture2D" uid="uid://i4f5g82at5h6" path="res://Graphics/Experience orb/frame_0001.png" id="2_kd31t"]
