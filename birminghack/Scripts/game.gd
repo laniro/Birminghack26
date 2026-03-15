@@ -32,7 +32,15 @@ func _on_timer_timeout() -> void:
 	
 		var x: float = player.position.x + enemy_distance*cos(rand_degs*0.0174532)
 		var y: float = player.position.y + enemy_distance*sin(rand_degs*0.0174532)
-	
+		
+		var mattyChance = 0.1
+		if rng.randf() <= mattyChance:
+			enemy.get_child(1).texture = preload("res://boss.png")
+			enemy.damage = 3
+			enemy.health = 5
+		
+		
+		
 		enemy.position = Vector2(x,y)
 		enemy.enemyspeed = enemy_speed
 		enemy.player = player
