@@ -23,8 +23,8 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	health -= 1.0
 	if area.collision_layer != 1:
+		health -= 1
+	if health <= 0:
 		killed.emit(position, effect)
-	if health == 0:
 		queue_free()
