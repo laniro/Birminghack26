@@ -130,6 +130,7 @@ func Hit(damage, isTrue):
 	updateHealthBar()
 	if (health <= 0) && $InvunerabilityTimer.is_stopped():
 		_death()
+
 func heal(amount):
 	health = min(maxhalth,health+amount)
 	updateHealthBar()
@@ -163,8 +164,11 @@ func _on_invunerability_timer_timeout() -> void:
 	if death_xp < (2**death_count):
 		death.emit(maxScore)
 	else:
-		death_xp = 0
-		health = maxhalth
-		$Sprite2D.texture = load("res://Graphics/marcus_happy.png")
-	$"../CanvasLayer/ExperienceBar".switchMode("apples")
-	$"../CanvasLayer/HealthBar".switchMode("pears")
+		_revive()
+	
+func _revive() -> void:
+	death_xp = 0
+	health = maxhalth
+	$Sprite2D.texture = load("res://Graphics/marcus_happy.png")
+	$"../CanvasLayer/ExperienceBar".switchMode("normal")
+	$"../CanvasLayer/HealthBar".switchMode("normal")
