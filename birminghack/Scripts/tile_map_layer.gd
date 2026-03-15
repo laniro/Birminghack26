@@ -61,14 +61,15 @@ func process_chunk_queue():
 				elif m < 4:
 					atlas = GRASS
 					
-				if a>9:
-					var poi = poison_scene.instantiate()
-					poi.position = Vector2i(wx,wy)
-				
-				
 				set_cell(Vector2i(wx,wy),0, atlas)
+				
+		for  i in range ((chunk_pos.x+chunk_pos.y)):
+			var poi = poison_scene.instantiate()
+			poi.position = Vector2i((chunk_pos.x*CHUNK_SIZE+randi_range(0,CHUNK_SIZE))*TILEDIM , (chunk_pos.y*CHUNK_SIZE+randi_range(0,CHUNK_SIZE))*TILEDIM)
+			poi.permanent = true
+			$"../Enemies".add_child(poi)
+				
 		
-	
 
 func check_chunk_loading():
 	if not is_instance_valid(player):
