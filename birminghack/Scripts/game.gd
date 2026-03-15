@@ -2,9 +2,12 @@ extends Node2D
 
 @export var enemy_distance = 1500
 @export var enemy_speed = 300
+@export var magnet_chance: int = 100
 var enemy_scene: PackedScene = load("res://Scenes/enemies.tscn")
 var bullet_scene: PackedScene = load("res://Scenes/Bullet.tscn")
 var sword_scene: PackedScene = load("res://Scenes/sword.tscn")
+var xp_scene: PackedScene = load("res://Scenes/ExperienceOrb.tscn")
+var magnet_scene: PackedScene = load("res://Scenes/Magnet.tscn")
 var wave_count = 1
 var player
 
@@ -46,12 +49,23 @@ func _on_timer_timeout() -> void:
 	wave_count += 1
 
 func on_death():
+	summonXP()
 	$Player.onKill()
+
+func summonXP() -> void:
+	var rng := RandomNumberGenerator.new()
+	if rng.randi_range(1,magnet_chance) == 1:
+		var magnet = magnet_scene.instantiate()
+		get_node("/root/Game").add_child(magnet)
+		magnet.initiate(self)
+	else:
+		var xp = xp_scene.instantiate()
+		$XP.add_child(xp)
+		xp.initiate(self)
 
 func _on_player_shoot(pos: Variant) -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.position = pos
-	print(bullet)
 	$Weapons.add_child(bullet)
 
 
@@ -63,3 +77,9 @@ func _on_player_swing(pos: Variant) -> void:
 
 func _on_player_hit() -> void:
 	$Player.Hit(1, false)
+
+
+func _on_player_death(maxScore) -> void:
+	$CanvasLayer/TextEdit.text = "You died Max Score: " + str(maxScore)
+	$CanvasLayer/TextEdit.visible = true
+	get_tree().paused = true
