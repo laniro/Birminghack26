@@ -9,7 +9,7 @@ func _ready() -> void:
 	visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if menuType == "off":
 		if arithmeticNum > 0:
 			arithmeticNum -= 1
@@ -71,7 +71,3 @@ func idx_clicked(i):
 	visible = false
 	clear()
 	#get_tree().paused = false
-	
-
-func _on_item_selected(index: int) -> void:
-	pass # Replace with function body.

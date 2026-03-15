@@ -7,7 +7,6 @@ var swing_time = 0.2
 func _ready() -> void:
 	$Timer.wait_time = swing_time
 	look_at(get_global_mouse_position())
-	var angle = global_position.angle_to_point(get_global_mouse_position())
 	
 func _process(delta: float) -> void:
 	$RadioSword.rotation += deg_to_rad(90*delta/swing_time)

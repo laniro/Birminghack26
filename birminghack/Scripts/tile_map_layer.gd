@@ -24,10 +24,9 @@ func _ready() -> void:
 	_initialize_noise()
 	generated_chunk(Vector2(0,0))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	check_chunk_loading()
 	process_chunk_queue()
-	update_position_label()
 
 func _initialize_noise():
 	moisture.seed = randi()
@@ -72,12 +71,10 @@ func process_chunk_queue():
 		
 
 func check_chunk_loading():
+	
 	if not is_instance_valid(player):
 		return
 	var player_chunk = Vector2i(floor(player.global_position.x/(CHUNK_SIZE*TILEDIM)),floor(player.global_position.y/(CHUNK_SIZE*TILEDIM)))
-	
-	var lx = posmod(player.global_position.x,CHUNK_SIZE*TILEDIM)
-	var ly = posmod(player.global_position.y,CHUNK_SIZE*TILEDIM)
 	
 	generated_chunk(player_chunk+Vector2i(-1,0))
 	generated_chunk(player_chunk+Vector2i(1,0))
@@ -87,13 +84,6 @@ func check_chunk_loading():
 	generated_chunk(player_chunk+Vector2i(1,1))
 	generated_chunk(player_chunk+Vector2i(-1,-1))
 	generated_chunk(player_chunk+Vector2i(1,-1))
-	
-	
-	
-func update_position_label():
-	if is_instance_valid(player):
-		var cx = floor(player.global_position.x/(CHUNK_SIZE*TILEDIM))
-		var cy = floor(player.global_position.y/(CHUNK_SIZE*TILEDIM))
 
 	
 	

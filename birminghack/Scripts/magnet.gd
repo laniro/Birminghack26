@@ -10,7 +10,7 @@ func initiate(parent):
 	position = parent.position
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	for xp_orb in get_node("/root/Game/XP").get_children():
 		xp_orb.speed = xp_speed;
 	queue_free()

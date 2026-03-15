@@ -4,9 +4,9 @@ var speed = 400
 var time = 100
 var maxhalth = 10.0
 var health = 10.0
-var defense = 1.0
-var trueDefense = 0
 var xp = 0
+var defense = 1.5
+var trueDefense = 1.0
 var level = 0
 
 var velocity = Vector2(0, 0)
@@ -116,8 +116,11 @@ func _on_area_entered(area: Area2D) -> void:
 
 func Hit(damage, isTrue):
 	$"../AudioStreamPlayer2D".play()
+	var overallDefense = trueDefense
+	if (!isTrue):
+		overallDefense = defense
 	
-	if (randf()<=1):
+	if (randf()<=1/overallDefense):
 		health -= damage
 	updateHealthBar()
 	if (health <= 0):

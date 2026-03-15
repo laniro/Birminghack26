@@ -20,8 +20,6 @@ enum PopupID{
 	MSpeed
 }
 
-var _last_mouse_position
-
 func _ready() -> void:
 	player = get_node("/root/Game/Player")
 
@@ -62,7 +60,6 @@ func effects(effect, pos):
 		
 func addEffects(poison,pos):
 	poison.position = pos
-	poison.character = $Player
 	$Enemies.add_child(poison)
 
 func summonXP(pos) -> void:
