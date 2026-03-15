@@ -6,7 +6,7 @@ var maxhalth = 10.0
 var health = 10.0
 var defense = 1.0
 var trueDefense = 0
-var exp = 0
+var xp = 0
 var level = 0
 
 var velocity = Vector2(0, 0)
@@ -61,10 +61,10 @@ func _on_timer_timeout() -> void:
 		pass # Where we will add shift code
 	
 func gainExp(amount):
-	exp += amount
+	xp += amount
 	death_xp += amount
-	if (exp>10*(level+1)):
-		exp-=10*(level+1)
+	if (xp>10*(level+1)):
+		xp-=10*(level+1)
 		level+=1
 		if level%5:
 			$"../CanvasLayer/ItemList".showArithmetic()
@@ -74,7 +74,7 @@ func gainExp(amount):
 	updateHealthBar()
 
 func updateExperienceBar():
-	$"../CanvasLayer/ExperienceBar".value = 100*exp/(10*(level+1))
+	$"../CanvasLayer/ExperienceBar".value = 100*xp/(10*(level+1))
 	$"../CanvasLayer/ExperienceBar/Label".text = "Level: " + str(level)
 
 func updateHealthBar():
@@ -116,9 +116,6 @@ func _on_area_entered(area: Area2D) -> void:
 
 func Hit(damage, isTrue):
 	$"../AudioStreamPlayer2D".play()
-	var overallDefense = trueDefense
-	if (!isTrue):
-		overallDefense +=defense
 	
 	if (randf()<=1):
 		health -= damage
