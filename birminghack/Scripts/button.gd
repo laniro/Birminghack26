@@ -10,7 +10,6 @@ func _ready() -> void:
 
 func pressed():
 	get_tree().paused = false
-	print("fosaepguesohfe;fieosgfujbek;fbgs;ogfbsouifi;sohgfhx;goufsbdrogbudbfoso")
 	$"..".visible = false
 	$"../../Player".visible = true
 	$"../../CanvasLayer/ExperienceBar".visible = true
