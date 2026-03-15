@@ -1,13 +1,14 @@
 extends Area2D
 
-@export var speed = 400
-@export var time = 100
-@export var maxhalth = 10.0
-@export var health = 10.0
-@export var defense = 1
-@export var trueDefense = 0
-@export var exp = 0
-@export var level = 0
+var speed = 400
+var time = 100
+var maxhalth = 20.0
+var health = 20.0
+var defense = 1.0
+var trueDefense = 1.0
+var exp = 0
+var level = 0
+
 var velocity = Vector2(0, 0)
 var canSwing = true
 var maxScore = 0
